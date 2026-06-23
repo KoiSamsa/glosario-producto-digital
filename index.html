@@ -10,105 +10,87 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans+Condensed:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════════════════
-   CSS VIVO DE PRODUCCIÓN · KOI SAMSA v7.3.0 (koisamsa.com)
-   Copia íntegra del paquete que sirve la web. NO editar aquí:
-   la fuente de verdad es el Customizer de WP / el vault.
+   CSS VIVO DE PRODUCCIÓN · KOI SAMSA v7.4.3 (koisamsa.com)
+   Copia íntegra del paquete que sirve la web (live desde 2026-06-16,
+   Customizer WP). NO editar aquí: la fuente de verdad es el
+   Customizer / el vault (ks-css-v7.4.3-CANDIDATO.css).
    ═══════════════════════════════════════════════════════════════ */
 /* ═══════════════════════════════════════════════════════════════
-   KOI SAMSA · CSS v7.3.0 · WordPress / Salient
-   Generado: 2026-06-03 · consolida v7.2.x + cobre editorial + fix meta-category + focus
-   Destino: Salient → General Settings → CSS/Script Related → Custom CSS Code (post 1806)
-   Sustituye: contenido actual del post 1806 (v5.0 + adiciones v5.1.x sueltas)
+   KOI SAMSA · CSS v7.4.3 · WordPress / Salient · 2026-06-11
 
-   ── ESTRUCTURA DEL PAQUETE ───────────────────────────────────────
-   Bloque 0 · Tokens          · CSS custom properties (nomenclatura DTCG-compatible)
-   Bloque 1 · Base prose      · Tipografía editorial
-   Bloque 2 · Componentes     · Globales reutilizables
-   Bloque 3 · Scope editorial · Marginalia, asides, pullquote, highlight
-   Bloque 4 · Scope artefacto · Embed iframe + placeholder
-   Bloque 5 · Scope WP        · Overrides Salient base
-   Bloque 6 · Hotfixes WP     · Overrides Salient específicos del post 1806
+   DESTINO: Customizer → Apariencia → Personalizar → CSS adicional
+            (id dynamic-css-inline-css). NO el post 1806 — está vacío.
 
-   FUENTES DE VERDAD:
-   · Vault03/08_WEB/00 DOCUMENTACIÓN/CSS/ks-tokens.css v7.1 (2026-05-25)
-   · Vault03/08_WEB/00 DOCUMENTACIÓN/CSS/ks-base.css v6.0
-   · Vault03/08_WEB/00 DOCUMENTACIÓN/CSS/ks-components.css v7.0
-   · Vault03/08_WEB/00 DOCUMENTACIÓN/CSS/ks-scope-editorial.css v7.0
-   · Vault03/08_WEB/00 DOCUMENTACIÓN/CSS/ks-scope-artefacto.css v7.0
-   · Vault03/08_WEB/00 DOCUMENTACIÓN/CSS/ks-scope-wp.css v7.0
-   · WP post 1806 snapshot (hotfixes v4.1.x / v5.1.x vivos)
+   ESTRUCTURA (dos ejes: CAPAS × SCOPES)
+   Bloque 0 · TOKENS            · única fuente de valores (DTCG)
+   Bloque 1 · SCOPE EDITORIAL   · prose + marginalia + asides
+   Bloque 2 · COMPONENTES I     · cards, tags, chips, faq
+   Bloque 3 · COMPONENTES II    · ficha portfolio
+   Bloque 4 · SCOPE ARTEFACTO   · embeds Lab
+   Bloque 5 · SCOPE WP · archive · category/tag/author
+   Bloque 6 · COMPONENTES III   · breadcrumbs, meta, notices, tablas, focus
+   Bloque 7 · SCOPE WP · folios  · camisas + afinados de contexto
+   Bloque 8 · SCOPE WP · chasis  · Layer 3 — ÚNICO bloque con !important
 
-   LEYES QUE CUMPLE:
-   · !DECISIÓN — Sistema cromático KS 11 piezas canon (2026-05-21)
-   · !DECISIÓN — Adopción DTCG 2025.10 (2026-05-16)
-   · !DECISIÓN — Relevo modular (2026-05-16)
-   · !DECISIÓN — Vaults son fuente de verdad WP es renderizador
+   CUÁNDO EDITARLO
+   · Color, tamaño o espaciado → SOLO Bloque 0.
+   · Identidad Notes/Lab/Studio → su bloque de scope.
+   · Pelear con Salient/Nectar → Bloque 8, respetando doctrina !important.
 
-   ROLLBACK: si algo sale mal, restaurar desde
-             Vault99-Wiki/08_OUTPUTS/ks-css-v5.0.css (paquete íntegro
-             pre-volcado del 2026-04-19) + adiciones v5.1.x del _ARCHIVO.
+   QUÉ NO TOCAR NUNCA
+   · No añadir hex fuera del Bloque 0.
+   · No añadir !important fuera del Bloque 8.
+   · No usar @layer: Salient vive fuera de cascade layers; meter este
+     paquete en @layer invertiría la cascada. Decisión consciente.
+   · No cargar fuentes con @import: IBM Plex entra vía <link> en
+     Header Scripts (WPCode). @import aquí bloquearía el render.
 
-   FUENTES TIPOGRÁFICAS: cargar IBM Plex Sans/Serif/Mono/Condensed
-                         vía <link> en Header Scripts (WPCode), NO con
-                         @import desde aquí — bloquearía el render.
+   ROLLBACK: pegar snapshot v7.3.0
+             (Vault03/08_WEB/00 DOCUMENTACIÓN/CSS/_ARCHIVO/)
    ═══════════════════════════════════════════════════════════════ */
 
 
 /* ╔══════════════════════════════════════════════════════════════╗
-   ║ BLOQUE 0 · ks-tokens.css v7.1 — Layer 0                       ║
-   ║ Nomenclatura compatible con la arquitectura DTCG 2025.10;     ║
-   ║ implementación en CSS custom properties.                       ║
+   ║ BLOQUE 0 · TOKENS — única fuente de valores hardcoded         ║
+   ║ No añadir hex fuera de este bloque.                           ║
+   ║ Las escalas de color y tokens sin consumidor en este archivo  ║
+   ║ se conservan — el HTML publicado en WP también los referencia.║
    ╚══════════════════════════════════════════════════════════════╝ */
 
 :root {
 
-  /* ═══ ks.typography.family ──────────────────────────────────── */
-  --ks-typography-family-sans:      "IBM Plex Sans",          system-ui, sans-serif;
+  /* ── Tipografía ─────────────────────────────────────────────── */
+  --ks-typography-family-sans:      "IBM Plex Sans",           system-ui, sans-serif;
   --ks-typography-family-serif:     "IBM Plex Serif",          Georgia, serif;
   --ks-typography-family-mono:      "IBM Plex Mono",           monospace;
   --ks-typography-family-condensed: "IBM Plex Sans Condensed", sans-serif;
 
 
-  /* ═══ ks.color.brand · Paleta canónica · 11 piezas firmadas ───
-     Source of truth: !DECISIÓN — Sistema cromático KS 11 piezas canon (2026-05-21).
-     4 extremos materiales + 7 colores cromáticos.
-     ═══ */
+  /* ── Color de marca · 11 piezas ─────────────────────────────── */
 
-  /* Extremos materiales (4 piezas · sin escala tonal salvo Calcio).
-     Calcio funciona como color base de papel y por eso no se le
-     aplica escala 5 pasos (ver sección ks.color.scale). */
+  /* Extremos materiales */
   --ks-color-brand-hierro:  #2B200F;
   --ks-color-brand-niquel:  #B3B7B8;
   --ks-color-brand-calcio:  #FAF9F7;
   --ks-color-brand-caliza:  #D1CBBA;
 
-  /* Primarios químicos (3 piezas). */
+  /* Primarios */
   --ks-color-brand-rojo:     #AC4952;
   --ks-color-brand-turquesa: #00A6AB;
   --ks-color-brand-cobalto:  #335E82;
 
-  /* Transmutaciones secundarias (4 piezas · uso marginal). */
+  /* Secundarios */
   --ks-color-brand-terra-rossa:    #CE837A;
   --ks-color-brand-marmol-rosa:    #EDC4BD;
   --ks-color-brand-malva-eritrina: #AE6586;
   --ks-color-brand-verde-patina:   #9DC5B9;
 
-  /* Alias semánticos de color (tinta y papel del prose editorial). */
+  /* Alias semánticos */
   --ks-color-ink:    var(--ks-color-brand-hierro);
   --ks-color-paper:  var(--ks-color-brand-calcio);
 
-  /* Alias retrocompatibles · usados en el paquete actual.
-     Pendiente migrar a nombres químicos canónicos en sesión
-     dedicada (40+ refs, find-replace global). */
-  --ks-color-brand-teal:  var(--ks-color-brand-turquesa);
-  --ks-color-brand-blue:  var(--ks-color-brand-cobalto);
 
-
-  /* ═══ ks.color.scale · Escalas tonales · 5 pasos por color ───
-     Source of truth: !DECISIÓN — Sistema cromático KS 11 piezas canon (2026-05-21).
-     Pasos: luz-2 · luz-1 · base · som-1 · som-2 (CIE Lab Método B).
-     Calcio excluido — actúa como color base de papel.
-     ═══ */
+  /* ── Escalas tonales · 5 pasos por color (luz-2 luz-1 base som-1 som-2) ── */
 
   --ks-color-scale-turquesa-luz-2: #9BD6D4;
   --ks-color-scale-turquesa-luz-1: #5DBFC0;
@@ -171,18 +153,14 @@
   --ks-color-scale-marmol-rosa-som-2: #A57E78;
 
 
-  /* ═══ ks.surface · Superficies (sólido, nunca rgba) ───────────
-     Calcio (#FAF9F7) actúa como fondo base. `surface-elevated` es
-     blanco puro técnico para superficies elevadas sobre Calcio
-     (cards, embeds, header). No es color de marca, es función.
-     ═══ */
+  /* ── Superficies ─────────────────────────────────────────────── */
   --ks-surface-bg:       #FAF9F7;
   --ks-surface-default:  #FBFAF7;
   --ks-surface-muted:    #F6F6F3;
   --ks-surface-elevated: #FFFFFF;
 
 
-  /* ═══ ks.color.tint · Tints funcionales LCH ─────────────────── */
+  /* ── Tints funcionales ───────────────────────────────────────── */
   --ks-color-tint-teal-05: #EAF2F2;
   --ks-color-tint-teal-06: #D9E8E9;
   --ks-color-tint-teal-22: #A6CECF;
@@ -191,26 +169,24 @@
   --ks-color-tint-red-06:  #F3E1E1;
   --ks-color-tint-red-22:  #E2B6B7;
 
-  --ks-color-tint-blue-05: #EEF1F5;
-  --ks-color-tint-blue-06: #DFE6EE;
-  --ks-color-tint-blue-22: #B3C3D5;
+  --ks-color-tint-blue-05: #EEF1F5;   /* candidato a poda — verificar WP */
+  --ks-color-tint-blue-06: #DFE6EE;   /* candidato a poda — verificar WP */
+  --ks-color-tint-blue-22: #B3C3D5;   /* candidato a poda — verificar WP */
 
   --ks-color-tint-beige-10: #EFEEEA;
-  --ks-color-tint-beige-20: #E5E2DB;
+  --ks-color-tint-beige-20: #E5E2DB;  /* candidato a poda — verificar WP */
   --ks-color-tint-beige-50: #D0CCBF;
 
-  /* ═══ ks.color.copper · cobre · color de SCOPE EDITORIAL ───────
-     No es pieza del canon de 11; es tint de scope para .ks-aside-derivada
-     (remisión a pieza hermana del nodo). Base 500 #C67E3E. El fondo se
-     mantiene saturado para distinguirse del gris de .ks-aside-card. ═══ */
-  --ks-color-copper-surface: #F2E3D2;  /* fondo derivada */
-  --ks-color-copper-rule:    #C67E3E;  /* filete lateral */
-  --ks-color-copper-label:   #C67E3E;  /* label */
-  --ks-color-copper-link:    #B06A2E;  /* enlace */
-  --ks-color-copper-hover:   #8F551F;  /* enlace hover */
+
+  /* ── Cobre · .ks-aside-derivada ─────────────────────────────── */
+  --ks-color-copper-surface: #F7F2EC;  /* fondo nota derivada · cobre ~6% */
+  --ks-color-copper-rule:    #F0E0D2;  /* filete lateral · cobre ~20%     */
+  --ks-color-copper-label:   #C67E3E;  /* label · cobre vivo 500          */
+  --ks-color-copper-link:    #B06A2E;  /* enlace                          */
+  --ks-color-copper-hover:   #8F551F;  /* enlace hover                    */
 
 
-  /* ═══ ks.color.text · 9 opacidades sobre tinta editorial ────── */
+  /* ── Texto · opacidades sobre hierro ────────────────────────── */
   --ks-color-text-87: rgba(43, 32, 15, 0.87);
   --ks-color-text-78: rgba(43, 32, 15, 0.78);
   --ks-color-text-72: rgba(43, 32, 15, 0.72);
@@ -220,28 +196,28 @@
   --ks-color-text-45: rgba(43, 32, 15, 0.45);
   --ks-color-text-38: rgba(43, 32, 15, 0.38);
   --ks-color-text-28: rgba(43, 32, 15, 0.28);
-  --ks-color-text-04: rgba(43, 32, 15, 0.04);  /* fondo discreto · usado por .ks-aside-concept--quiet */
+  --ks-color-text-04: rgba(43, 32, 15, 0.04);  /* fondo discreto · .ks-aside-concept--quiet */
 
 
-  /* ═══ ks.color.border ──────────────────────────────────────── */
+  /* ── Bordes ──────────────────────────────────────────────────── */
   --ks-color-border-default: rgba(43, 32, 15, 0.10);
   --ks-color-border-strong:  rgba(43, 32, 15, 0.17);
 
 
-  /* ═══ ks.shadow · 4 niveles de elevación ─────────────────────── */
-  --ks-shadow-soft:             0 1px 0 rgba(43, 32, 15, 0.08);
-  --ks-shadow-card:             0 0 0 1px rgba(43, 32, 15, 0.07), 0 1px 0 rgba(43, 32, 15, 0.08);
-  --ks-shadow-float:            0 4px 16px rgba(29, 20, 12, 0.10);
-  --ks-shadow-column-elevated:  0 2px 20px rgba(43, 32, 15, 0.06);  /* WPBakery columns con bg inline */
+  /* ── Sombras ─────────────────────────────────────────────────── */
+  --ks-shadow-soft:            0 1px 0 rgba(43, 32, 15, 0.08);   /* candidato a poda — verificar WP */
+  --ks-shadow-card:            0 0 0 1px rgba(43, 32, 15, 0.07), 0 1px 0 rgba(43, 32, 15, 0.08);
+  --ks-shadow-float:           0 4px 16px rgba(29, 20, 12, 0.10);
+  --ks-shadow-column-elevated: 0 2px 20px rgba(43, 32, 15, 0.06); /* WPBakery columns con bg inline */
 
 
-  /* ═══ ks.radius ─────────────────────────────────────────────── */
+  /* ── Radios ──────────────────────────────────────────────────── */
   --ks-radius-sm: 5px;
   --ks-radius-md: 10px;
   --ks-radius-lg: 15px;
 
 
-  /* ═══ ks.space · 8 pasos canónicos ──────────────────────────── */
+  /* ── Espaciado ───────────────────────────────────────────────── */
   --ks-space-xs:  8px;
   --ks-space-sm:  12px;
   --ks-space-md:  18px;
@@ -249,72 +225,71 @@
   --ks-space-xl:  32px;
   --ks-space-2xl: 48px;
   --ks-space-3xl: 72px;
-  --ks-space-4xl: 100px;
+  --ks-space-4xl: 100px;  /* candidato a poda — verificar WP */
 
 
-  /* ═══ ks.typography.size.body ──────────────────────────────── */
+  /* ── Tamaños tipográficos ────────────────────────────────────── */
   --ks-typography-size-body-l: 20px;
   --ks-typography-size-body-m: 17px;
   --ks-typography-size-body-s: 15px;
-  --ks-typography-size-aside:  16px;   /* cuerpo de marginalia: por debajo del cuerpo, por encima de meta */
 
-
-  /* ═══ ks.typography.size.heading ───────────────────────────── */
   --ks-typography-size-h2: 36px;
   --ks-typography-size-h3: 22px;
   --ks-typography-size-h4: 14px;
 
-
-  /* ═══ ks.typography.size.meta ──────────────────────────────── */
   --ks-typography-size-meta-l:  13px;
   --ks-typography-size-meta-m:  12px;
   --ks-typography-size-meta-s:  11px;
   --ks-typography-size-meta-xs: 10px;
 
-
-  /* ═══ ks.typography.prose ──────────────────────────────────── */
   --ks-typography-prose-size: var(--ks-typography-size-body-l);
   --ks-typography-prose-line: 1.72;
-  --ks-typography-aside-line: 1.6;    /* interlineado de marginalia */
   --ks-typography-prose-max:  680px;
 
 
-  /* ═══ ks.size.hero · clamp() autoescalado ──────────────────── */
+  /* ── Héroe · clamp() · usado desde HTML publicado ───────────── */
   --ks-size-hero-xl: clamp(48px, 13.6vw, 180px);
   --ks-size-hero-l:  clamp(36px, 8vw,    96px);
   --ks-size-hero-m:  clamp(28px, 5vw,    52px);
   --ks-size-display: clamp(24px, 3.5vw,  40px);
 
 
-  /* ═══ ks.size.layout · Medidas estructurales WP ──────────────
-     Offsets y anchos que dependen del chasis Salient. Único punto
-     de cambio si Salient redimensiona el header o cambia el
-     breakpoint del container.
-     ═══ */
-  --ks-size-header-offset:  64px;     /* alto efectivo de #header-outer en posts */
-  --ks-size-embed-min:      500px;    /* min-height de artefactos embebidos      */
-  --ks-size-embed-iframe:   600px;    /* alto por defecto iframe artefacto       */
-  --ks-size-folio-blog:     92%;      /* ancho del .container en single-post     */
-  --ks-size-folio-blog-max: 1600px;   /* tope del .container en pantallas grandes */
+  /* ── Layout · chasis Salient ────────────────────────────────── */
+  --ks-size-header-offset:  64px;    /* alto efectivo de #header-outer en posts */
+  --ks-size-embed-min:      500px;   /* min-height de artefactos embebidos      */
+  --ks-size-embed-iframe:   600px;   /* alto por defecto iframe artefacto       */
+  --ks-size-folio-blog:     92%;     /* ancho del .container en single-post     */
+  --ks-size-folio-blog-max: 1600px;  /* tope del .container en pantallas grandes */
 
 
-  /* ═══ ks.gradient · solo dos familias canónicas ────────────── */
+  /* ── Gradientes · usados desde HTML publicado (heros) ─────── */
   --ks-gradient-teal:      linear-gradient(160deg, #FFFFFF 0%, #D9E8E9 50%, #00A6AB 100%);
   --ks-gradient-teal-blue: linear-gradient(160deg, #FFFFFF 0%, #D9E8E9 35%, #00A6AB 65%, #335E82 100%);
 
 
-  /* ═══ ks.motion · scope motion transversal ─────────────────── */
+  /* ── Motion ─────────────────────────────────────────────────── */
   --ks-motion-easing-default:   cubic-bezier(0.4, 0, 0.2, 1);
   --ks-motion-duration-default: 0.3s;
 }
 
 
 /* ╔══════════════════════════════════════════════════════════════╗
-   ║ BLOQUE 1 · ks-base.css v6.0 — Layer 1 · prose editorial      ║
+   ║ BLOQUE 1 · SCOPE EDITORIAL — identidad Notes · lectura        ║
+   ║                                                                ║
+   ║ Tipografía prose serif, marginalia, asides (×3), pullquote,   ║
+   ║ highlight, fuentes al pie y strip de revisión.                 ║
+   ║                                                                ║
+   ║ Activación via :is(.ks-scope-editorial, .ks-prose,            ║
+   ║   .single-post/.single-portfolio .wpb_text_column/.content-   ║
+   ║   inner). El HTML publicado actual no necesita la clase;       ║
+   ║   HTML futuro usa .ks-scope-editorial directamente.            ║
+   ║                                                                ║
+   ║ ⚠ NO sustituir :is() por :where() — especificidad cero        ║
+   ║   pierde contra el theme. Overrides en Bloque 7.              ║
    ╚══════════════════════════════════════════════════════════════╝ */
 
-/* Prose body · serif for sustained reading */
-:is(.ks-prose,
+/* Cuerpo prose · serif para lectura sostenida */
+:is(.ks-scope-editorial, .ks-prose,
     .single-post .wpb_text_column,
     .single-post .content-inner,
     .single-portfolio .wpb_text_column,
@@ -326,21 +301,21 @@
   max-width:   var(--ks-typography-prose-max);
 }
 
-:is(.ks-prose,
+:is(.ks-scope-editorial, .ks-prose,
     .single-post .wpb_text_column,
     .single-portfolio .wpb_text_column) p {
   margin-bottom: 1.1em;
   text-wrap:     pretty;
 }
 
-:is(.ks-prose,
+:is(.ks-scope-editorial, .ks-prose,
     .single-post .wpb_text_column,
     .single-portfolio .wpb_text_column) li {
   margin-bottom: 0.4em;
 }
 
-/* Editorial headings (h1-h4, h6). h5 reservado. */
-:is(.ks-prose,
+/* Jerarquía editorial (h1-h4, h6). h5 reservado. */
+:is(.ks-scope-editorial, .ks-prose,
     .single-post .wpb_text_column,
     .single-portfolio .wpb_text_column) h1 {
   font-family:    var(--ks-typography-family-serif);
@@ -353,7 +328,7 @@
   text-wrap:      balance;
 }
 
-:is(.ks-prose,
+:is(.ks-scope-editorial, .ks-prose,
     .single-post .wpb_text_column,
     .single-portfolio .wpb_text_column) h2 {
   font-family:   var(--ks-typography-family-serif);
@@ -366,7 +341,7 @@
   text-wrap:     balance;
 }
 
-:is(.ks-prose,
+:is(.ks-scope-editorial, .ks-prose,
     .single-post .wpb_text_column,
     .single-portfolio .wpb_text_column) h3 {
   font-family:   var(--ks-typography-family-sans);
@@ -379,7 +354,7 @@
   text-wrap:     balance;
 }
 
-:is(.ks-prose,
+:is(.ks-scope-editorial, .ks-prose,
     .single-post .wpb_text_column,
     .single-portfolio .wpb_text_column) h4 {
   font-family:    var(--ks-typography-family-condensed);
@@ -388,12 +363,12 @@
   line-height:    1.4;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color:          var(--ks-color-brand-teal);
+  color:          var(--ks-color-brand-turquesa);
   margin-top:     var(--ks-space-xl);
   margin-bottom:  var(--ks-space-sm);
 }
 
-:is(.ks-prose,
+:is(.ks-scope-editorial, .ks-prose,
     .single-post .wpb_text_column,
     .single-portfolio .wpb_text_column) h6 {
   font-family:    var(--ks-typography-family-mono);
@@ -406,12 +381,12 @@
   margin-bottom:  var(--ks-space-xs);
 }
 
-/* Blockquote — para citas de terceros. Conceptos propios usan
-   .ks-callout (Bloque 2) o .ks-aside-concept (Bloque 3). */
-:is(.ks-prose,
+/* Blockquote — citas de terceros. Conceptos propios usan
+   .ks-callout (Bloque 6) o .ks-aside-concept (este bloque). */
+:is(.ks-scope-editorial, .ks-prose,
     .single-post .wpb_text_column,
     .single-portfolio .wpb_text_column) blockquote {
-  border-left:  3px solid var(--ks-color-brand-teal);
+  border-left:  3px solid var(--ks-color-brand-turquesa);
   padding-left: var(--ks-space-lg);
   margin:       var(--ks-space-xl) 0;
   font-style:   italic;
@@ -419,22 +394,22 @@
 }
 
 /* Links · turquesa con underline, hover a cobalto */
-:is(.ks-prose,
+:is(.ks-scope-editorial, .ks-prose,
     .single-post .wpb_text_column,
     .single-portfolio .wpb_text_column) a {
-  color:                 var(--ks-color-brand-teal);
+  color:                 var(--ks-color-brand-turquesa);
   text-decoration:       underline;
   text-underline-offset: 2px;
   transition:            color var(--ks-motion-duration-default) var(--ks-motion-easing-default);
 }
-:is(.ks-prose,
+:is(.ks-scope-editorial, .ks-prose,
     .single-post .wpb_text_column,
     .single-portfolio .wpb_text_column) a:hover {
-  color: var(--ks-color-brand-blue);
+  color: var(--ks-color-brand-cobalto);
 }
 
 /* Inline code */
-:is(.ks-prose,
+:is(.ks-scope-editorial, .ks-prose,
     .single-post .wpb_text_column,
     .single-portfolio .wpb_text_column) code {
   font-family:   var(--ks-typography-family-mono);
@@ -444,8 +419,8 @@
   border-radius: var(--ks-radius-sm);
 }
 
-/* Prose images · responsive con border-radius medio */
-:is(.ks-prose,
+/* Imágenes del prose */
+:is(.ks-scope-editorial, .ks-prose,
     .single-post .wpb_text_column,
     .single-portfolio .wpb_text_column) img {
   max-width:     100%;
@@ -455,7 +430,7 @@
 }
 
 /* Separador horizontal */
-:is(.ks-prose,
+:is(.ks-scope-editorial, .ks-prose,
     .single-post .wpb_text_column,
     .single-portfolio .wpb_text_column) hr {
   border:     none;
@@ -463,211 +438,303 @@
   margin:     var(--ks-space-2xl) 0;
 }
 
-/* Responsive base */
+/* ── Marginalia y componentes editoriales ─────────────────────── */
+
+/* Revisado strip · cabecera con fecha de última revisión */
+.ks-revisado-strip {
+  display:       flex;
+  flex-wrap:     wrap;
+  align-items:   baseline;
+  gap:           var(--ks-space-sm);
+  margin:        var(--ks-space-md) 0 var(--ks-space-lg);
+  padding:       12px 16px;   /* afinado local: caja compacta fuera de la escala — racional v5.2 */
+  background:    var(--ks-color-tint-teal-05);
+  border-left:   3px solid var(--ks-color-brand-turquesa);
+  border-radius: var(--ks-radius-sm);
+}
+.ks-revisado-strip__label {
+  font-family:    var(--ks-typography-family-mono);
+  font-size:      var(--ks-typography-size-meta-s);
+  font-weight:    600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color:          var(--ks-color-brand-turquesa);
+  white-space:    nowrap;
+}
+.ks-revisado-strip__text {
+  font-family: var(--ks-typography-family-serif);
+  font-size:   14px;   /* afinado local entre meta-l (13) y body-s (15) — decisión visual v5.2 */
+  font-style:  italic;
+  color:       var(--ks-color-text-72);
+  line-height: 1.5;
+}
+
+/* Grid editorial 3-2 · texto + marginalia */
+.ks-grid-3-2 {
+  display:               grid;
+  grid-template-columns: 3fr 2fr;
+  gap:                   var(--ks-space-xl);
+  margin:                var(--ks-space-xl) 0;
+  align-items:           start;
+}
+.ks-grid-3-2 > .ks-col-aside { font-size: 0.95em; }
+
+/* Asides BEM · tres niveles de énfasis:
+   concept (alto · turquesa) · card (medio · gris) · note (bajo · filete).
+   derivada (cobre) no es nivel de énfasis: es FUNCIÓN — remisión a
+   pieza hermana del nodo. */
+.ks-aside-concept {
+  background:    var(--ks-color-tint-teal-05);
+  border-radius: var(--ks-radius-md);
+  padding:       var(--ks-space-md) var(--ks-space-lg);
+  margin-bottom: var(--ks-space-md);
+}
+.ks-aside-concept__label {
+  display:        block;
+  font-family:    var(--ks-typography-family-mono);
+  font-size:      var(--ks-typography-size-meta-xs);
+  font-weight:    600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color:          var(--ks-color-brand-turquesa);
+  margin-bottom:  var(--ks-space-xs);
+}
+.ks-aside-concept__body {
+  font-family: var(--ks-typography-family-serif);
+  font-size:   var(--ks-typography-size-body-s);
+  line-height: 1.55;
+  color:       var(--ks-color-text-87);
+}
+.ks-aside-concept__body strong { color: var(--ks-color-ink); }
+
+/* Variante --quiet · gris discreto. Modifier BEM, no override por
+   contexto: se aplica como clase, nunca por selector de página. */
+.ks-aside-concept--quiet {
+  background:    var(--ks-color-text-04);
+  padding:       var(--ks-space-md) var(--ks-space-lg);
+  margin-bottom: var(--ks-space-lg);
+  border-radius: var(--ks-radius-sm);
+  font-size:     var(--ks-typography-size-meta-l);
+  line-height:   1.55;
+  color:         var(--ks-color-text-62);
+}
+.ks-aside-concept--quiet p {
+  font-size:   var(--ks-typography-size-meta-l);
+  line-height: 1.55;
+  color:       var(--ks-color-text-62);
+  margin:      0 0 var(--ks-space-xs) 0;
+}
+.ks-aside-concept--quiet p:last-child { margin-bottom: 0; }
+.ks-aside-concept--quiet strong { color: var(--ks-color-text-78); }
+.ks-aside-concept--quiet em {
+  font-size:  var(--ks-typography-size-meta-l);
+  font-style: italic;
+}
+
+.ks-aside-card {
+  background:    var(--ks-surface-muted);
+  border:        1px solid var(--ks-color-border-default);
+  border-radius: var(--ks-radius-sm);
+  padding:       var(--ks-space-sm) var(--ks-space-md);
+  margin-bottom: var(--ks-space-md);
+}
+.ks-aside-card__label {
+  display:        block;
+  font-family:    var(--ks-typography-family-mono);
+  font-size:      var(--ks-typography-size-meta-xs);
+  font-weight:    500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color:          var(--ks-color-text-55);
+  margin-bottom:  6px;   /* afinado local: medio paso bajo xs — racional v7.0 */
+}
+.ks-aside-card__body {
+  font-family: var(--ks-typography-family-serif);
+  font-size:   14px;   /* afinado local 14px — ver racional en revisado-strip */
+  line-height: 1.55;
+  color:       var(--ks-color-text-72);
+}
+.ks-aside-card__body strong { color: var(--ks-color-ink); }
+
+.ks-aside-note {
+  font-family:   var(--ks-typography-family-serif);
+  font-size:     14px;   /* afinado local 14px — ver racional en revisado-strip */
+  line-height:   1.55;
+  color:         var(--ks-color-text-72);
+  margin-bottom: var(--ks-space-md);
+  padding-left:  var(--ks-space-sm);
+  border-left:   1px solid var(--ks-color-border-default);
+}
+
+/* Aside derivada · cobre · remisión a pieza hermana del nodo.
+   Color = función, no énfasis. Cobre de scope, no del canon. */
+.ks-aside-derivada {
+  background:    var(--ks-color-copper-surface);
+  border-left:   3px solid var(--ks-color-copper-rule);
+  border-radius: var(--ks-radius-sm);
+  padding:       var(--ks-space-sm) var(--ks-space-md);
+  margin-bottom: var(--ks-space-md);
+}
+.ks-aside-derivada__label {
+  display:        block;
+  font-family:    var(--ks-typography-family-mono);
+  font-size:      var(--ks-typography-size-meta-xs);
+  font-weight:    600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color:          var(--ks-color-copper-label);
+  margin-bottom:  6px;   /* afinado local: paridad con aside-card__label */
+}
+.ks-aside-derivada__label::before { content: "\2193  "; }
+.ks-aside-derivada__body {
+  font-family: var(--ks-typography-family-serif);
+  font-size:   14px;   /* afinado local 14px — ver racional en revisado-strip */
+  line-height: 1.55;
+  color:       var(--ks-color-text-72);
+}
+.ks-aside-derivada__body strong { color: var(--ks-color-ink); }
+.ks-aside-derivada__body a {
+  color:           var(--ks-color-copper-link);
+  text-decoration: none;
+  border-bottom:   1px dotted var(--ks-color-copper-rule);
+}
+.ks-aside-derivada__body a:hover { color: var(--ks-color-copper-hover); }
+
+/* Asides ligeros legacy · atajos pre-BEM en posts antiguos.
+   Para piezas nuevas: h6 de prose o BEM completo. */
+.ks-aside-label {
+  display:        block;
+  font-family:    var(--ks-typography-family-mono);
+  font-size:      var(--ks-typography-size-meta-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color:          var(--ks-color-text-45);
+  margin-bottom:  var(--ks-space-xs);
+}
+.ks-aside-link {
+  display:         block;
+  font-family:     var(--ks-typography-family-mono);
+  font-size:       var(--ks-typography-size-meta-m);
+  color:           var(--ks-color-brand-turquesa);
+  text-decoration: none;
+  margin-bottom:   var(--ks-space-xs);
+  padding:         0 var(--ks-space-xs);
+}
+.ks-aside-link:hover { text-decoration: underline; }
+
+/* Pullquote · frase propia destacada (terceros → <blockquote>) */
+.ks-pullquote {
+  font-family:  var(--ks-typography-family-serif);
+  font-size:    18px;   /* afinado local entre body-m y body-l — decisión visual v5.2 */
+  font-style:   italic;
+  line-height:  1.45;
+  color:        var(--ks-color-ink);
+  padding-left: var(--ks-space-md);
+  border-left:  3px solid var(--ks-color-brand-turquesa);
+  margin:       var(--ks-space-md) 0;
+}
+
+/* Highlight · resalte tipo marcador */
+.ks-highlight {
+  background: linear-gradient(180deg,
+                              transparent 55%,
+                              var(--ks-color-tint-teal-22) 55%,
+                              var(--ks-color-tint-teal-22) 92%,
+                              transparent 92%);
+  padding: 0 2px;
+}
+
+/* Editorial text · cuerpo sans compacto para UI editorial */
+.ks-editorial-text {
+  font-family: var(--ks-typography-family-sans);
+  font-size:   var(--ks-typography-size-body-m);
+  line-height: 1.65;
+  color:       var(--ks-color-text-87);
+}
+
+/* Overline legacy · piezas pre-refundación. Letter-spacing 0.14em
+   por convención visual de posts antiguos — distinta del h6 (0.06)
+   y del card-overline (0.08). */
+.ks-overline {
+  font-family:    var(--ks-typography-family-mono);
+  font-size:      var(--ks-typography-size-meta-s);
+  letter-spacing: 0.14em;
+  color:          var(--ks-color-text-45);
+  text-transform: uppercase;
+}
+
+/* Caption serif · pie de imagen editorial */
+.ks-caption-serif {
+  font-family: var(--ks-typography-family-serif);
+  font-size:   var(--ks-typography-size-meta-l);
+  font-style:  italic;
+  color:       var(--ks-color-text-52);
+  line-height: 1.5;
+  margin-top:  var(--ks-space-xs);
+  text-align:  left;
+}
+
+/* Sources · referencias al pie. font-family: inherit hereda serif
+   del prose. Especificidad 0-1-1, suficiente sin !important. */
+ol.ks-sources,
+ol.ks-sources li {
+  font-family: inherit;
+  font-size:   var(--ks-typography-size-meta-l);
+  line-height: 1.7;
+  color:       var(--ks-color-text-55);
+  font-weight: 400;
+}
+ol.ks-sources li em { font-style: italic; }
+ol.ks-sources li a {
+  color:           var(--ks-color-brand-turquesa);
+  text-decoration: underline;
+  font-weight:     400;
+}
+ol.ks-sources li a:hover { color: var(--ks-color-scale-turquesa-som-1); }
+
+/* Responsive scope editorial */
+@media (max-width: 960px) {
+  .ks-grid-3-2 {
+    grid-template-columns: 1fr;
+    gap:                   var(--ks-space-md);
+  }
+  .ks-grid-3-2 > .ks-col-aside { margin-top: var(--ks-space-sm); }
+  .ks-aside-concept,
+  .ks-aside-card { margin-bottom: var(--ks-space-md); }
+  .ks-pullquote  { font-size: 16px; }   /* afinado local — escala del 18px base */
+}
 @media (max-width: 768px) {
-  :is(.ks-prose,
+  :is(.ks-scope-editorial, .ks-prose,
       .single-post .wpb_text_column,
       .single-portfolio .wpb_text_column) {
-    font-size:   18px;
+    font-size:   18px;   /* afinado local responsive — racional v6.0 */
     line-height: 1.65;
   }
 }
+@media (max-width: 600px) {
+  .ks-revisado-strip { flex-direction: column; gap: 6px; }
+  .ks-revisado-strip__text { font-size: 13px; }
+}
 @media (max-width: 480px) {
-  :is(.ks-prose,
+  :is(.ks-scope-editorial, .ks-prose,
       .single-post .wpb_text_column,
       .single-portfolio .wpb_text_column) h2 { font-size: 28px; }
-  :is(.ks-prose,
+  :is(.ks-scope-editorial, .ks-prose,
       .single-post .wpb_text_column,
       .single-portfolio .wpb_text_column) h3 { font-size: 19px; }
 }
 
 
 /* ╔══════════════════════════════════════════════════════════════╗
-   ║ BLOQUE 2 · ks-components.css v7.0 — Layer 2 · componentes    ║
+   ║ BLOQUE 2 · Layer 2 · COMPONENTES I — cards, tags, chips        ║
+   ║                                                                ║
+   ║ Piezas de calibre universal: consumibles desde cualquier       ║
+   ║ scope (hoy las usan los índices Lab/Notes). NO son un scope.   ║
+   ║ ACTIVACIÓN: por clase de componente (.ks-card, .ks-tag,        ║
+   ║ .ks-chip) en HTML propio.                                      ║
+   ║ CUÁNDO EDITAR: rediseño de cards/etiquetas/filtros.            ║
    ╚══════════════════════════════════════════════════════════════╝ */
 
-/* ── Navegación · breadcrumbs ─────────────────────────────────── */
-.ks-breadcrumbs {
-  font-family:    var(--ks-typography-family-mono);
-  font-size:      var(--ks-typography-size-meta-s);
-  letter-spacing: 0.04em;
-  color:          var(--ks-color-text-52);
-  padding:        var(--ks-space-sm) var(--ks-space-lg);
-  border-bottom:  1px solid var(--ks-color-border-default);
-  background:     var(--ks-surface-bg);
-}
-.ks-breadcrumbs a {
-  color:           var(--ks-color-text-52);
-  text-decoration: none;
-  transition:      color var(--ks-motion-duration-default) var(--ks-motion-easing-default);
-}
-.ks-breadcrumbs a:hover { color: var(--ks-color-brand-teal); }
-.ks-breadcrumbs .ks-bc-sep { margin: 0 var(--ks-space-xs); color: var(--ks-color-text-28); }
-
-/* ── Article meta · ficha cabecera ────────────────────────────── */
-.ks-article-meta {
-  display:       flex;
-  flex-wrap:     wrap;
-  gap:           var(--ks-space-md);
-  align-items:   center;
-  padding:       var(--ks-space-md) 0;
-  margin-bottom: var(--ks-space-xl);
-  border-bottom: 1px solid var(--ks-color-border-default);
-}
-.ks-article-meta .ks-meta-item {
-  font-family: var(--ks-typography-family-mono);
-  font-size:   var(--ks-typography-size-meta-m);
-  color:       var(--ks-color-text-52);
-  display:     flex;
-  align-items: center;
-  gap:         var(--ks-space-xs);
-}
-.ks-article-meta .ks-meta-node {
-  font-family:    var(--ks-typography-family-condensed);
-  font-size:      var(--ks-typography-size-meta-m);
-  font-weight:    500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color:          var(--ks-color-brand-teal);
-  background:     var(--ks-color-tint-teal-05);
-  padding:        2px var(--ks-space-xs);
-  border-radius:  var(--ks-radius-sm);
-}
-.ks-article-meta .ks-meta-cat a {
-  font-family:     var(--ks-typography-family-sans);
-  font-size:       var(--ks-typography-size-meta-l);
-  color:           var(--ks-color-text-78);
-  text-decoration: none;
-  border:          1px solid var(--ks-color-border-default);
-  border-radius:   999px;
-  padding:         2px var(--ks-space-sm);
-  transition:
-    color        var(--ks-motion-duration-default) var(--ks-motion-easing-default),
-    border-color var(--ks-motion-duration-default) var(--ks-motion-easing-default);
-}
-.ks-article-meta .ks-meta-cat a:hover {
-  color:        var(--ks-color-ink);
-  border-color: var(--ks-color-border-strong);
-}
-
-/* ── Notices · información contextual ─────────────────────────── */
-.ks-notice {
-  font-family:   var(--ks-typography-family-sans);
-  font-size:     var(--ks-typography-size-body-s);
-  line-height:   1.6;
-  padding:       var(--ks-space-md) var(--ks-space-lg);
-  border-radius: var(--ks-radius-md);
-  margin:        var(--ks-space-lg) 0;
-}
-.ks-notice--teal  { background: var(--ks-color-tint-teal-05);  border-left: 3px solid var(--ks-color-tint-teal-22);  color: var(--ks-color-text-87); }
-.ks-notice--red   { background: var(--ks-color-tint-red-05);   border-left: 3px solid var(--ks-color-tint-red-22);   color: var(--ks-color-text-87); }
-.ks-notice--beige { background: var(--ks-color-tint-beige-10); border-left: 3px solid var(--ks-color-tint-beige-50); color: var(--ks-color-text-87); }
-
-/* ── Callout · concepto clave propio ──────────────────────────── */
-.ks-callout {
-  background:    var(--ks-color-tint-teal-05);
-  border:        2px solid var(--ks-color-brand-teal);
-  border-radius: var(--ks-radius-md);
-  padding:       var(--ks-space-lg) var(--ks-space-xl);
-  margin:        var(--ks-space-xl) 0;
-}
-.ks-callout-label {
-  display:        block;
-  font-family:    var(--ks-typography-family-mono);
-  font-size:      var(--ks-typography-size-meta-s);
-  font-weight:    600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color:          var(--ks-color-brand-teal);
-  margin-bottom:  var(--ks-space-sm);
-}
-.ks-callout p {
-  font-family: var(--ks-typography-family-serif);
-  font-size:   var(--ks-typography-size-body-m);
-  line-height: 1.5;
-  color:       var(--ks-color-ink);
-  margin:      0;
-}
-
-/* ── Wraps editoriales (camiseta) ─────────────────────────────── */
-.ks-post-wrap {
-  max-width:     860px;
-  margin:        var(--ks-space-3xl) auto;
-  padding:       var(--ks-space-2xl) var(--ks-space-2xl) var(--ks-space-3xl);
-  background:    var(--ks-surface-elevated);
-  border:        1px solid var(--ks-color-border-default);
-  border-radius: var(--ks-radius-lg);
-  box-shadow:    var(--ks-shadow-card);
-}
-.ks-portfolio-wrap {
-  max-width:     1100px;
-  margin:        var(--ks-space-3xl) auto;
-  padding:       var(--ks-space-2xl) var(--ks-space-2xl) var(--ks-space-3xl);
-  background:    var(--ks-surface-elevated);
-  border:        1px solid var(--ks-color-border-default);
-  border-radius: var(--ks-radius-lg);
-  box-shadow:    var(--ks-shadow-card);
-}
-
-/* ── Overhead · barra de metadatos sobre artículo ─────────────── */
-.ks-post-overhead {
-  display:     flex;
-  flex-wrap:   wrap;
-  align-items: center;
-  gap:         var(--ks-space-sm);
-  margin-top:  var(--ks-space-md);
-}
-.ks-reading-time {
-  font-family:    var(--ks-typography-family-mono);
-  font-size:      12px;
-  font-weight:    400;
-  letter-spacing: 0.06em;
-  color:          var(--ks-color-text-52);
-}
-.ks-overhead-sep {
-  width:          1px;
-  height:         14px;
-  background:     var(--ks-color-border-strong);
-  display:        inline-block;
-  vertical-align: middle;
-  margin:         0 2px;
-}
-
-/* ── Ficha portfolio · grid 2 col + meta-grid dt/dd ───────────── */
-.ks-portfolio-header {
-  display:               grid;
-  grid-template-columns: 1fr 1fr;
-  gap:                   var(--ks-space-2xl);
-  margin-top:            var(--ks-space-xl);
-  margin-bottom:         var(--ks-space-2xl);
-  padding-bottom:        var(--ks-space-2xl);
-  border-bottom:         1px solid var(--ks-color-border-default);
-}
-.ks-portfolio-meta-grid {
-  display:               grid;
-  grid-template-columns: auto 1fr;
-  gap:                   6px var(--ks-space-lg);
-  font-family:           var(--ks-typography-family-mono);
-  font-size:             12px;
-  line-height:           1.5;
-  color:                 var(--ks-color-text-52);
-}
-.ks-portfolio-meta-grid dt {
-  font-family:    var(--ks-typography-family-condensed);
-  font-size:      11px;
-  font-weight:    600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color:          var(--ks-color-text-45);
-  padding-top:    1px;
-}
-.ks-portfolio-meta-grid dd {
-  font-family: var(--ks-typography-family-mono);
-  font-size:   12px;
-  color:       var(--ks-color-text-62);
-}
-
-/* ── Cards (Lab index, Notes index) ───────────────────────────── */
 .ks-card {
   background:    var(--ks-surface-default);
   border-radius: var(--ks-radius-lg);
@@ -676,14 +743,14 @@
   transition:    box-shadow var(--ks-motion-duration-default) var(--ks-motion-easing-default);
 }
 .ks-card:hover { box-shadow: var(--ks-shadow-float); }
-.ks-card-body { padding: var(--ks-space-lg); }
+.ks-card-body  { padding: var(--ks-space-lg); }
 .ks-card-overline {
   font-family:    var(--ks-typography-family-condensed);
   font-size:      var(--ks-typography-size-meta-s);
   font-weight:    600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color:          var(--ks-color-brand-teal);
+  color:          var(--ks-color-brand-turquesa);
   margin-bottom:  var(--ks-space-xs);
 }
 .ks-card-title {
@@ -708,11 +775,11 @@
   margin-top:  var(--ks-space-sm);
 }
 
-/* ── Tag · etiqueta no interactiva ────────────────────────────── */
+/* Tag · etiqueta no interactiva */
 .ks-tag {
   display:        inline-block;
   font-family:    var(--ks-typography-family-mono);
-  font-size:      11px;
+  font-size:      var(--ks-typography-size-meta-s);
   font-weight:    500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -720,18 +787,18 @@
   background:     var(--ks-surface-muted);
   border:         1px solid var(--ks-color-border-default);
   border-radius:  var(--ks-radius-sm);
-  padding:        4px 10px;
+  padding:        4px 10px;   /* afinado local: chip compacto — racional v7.0 */
   line-height:    1.4;
 }
-.ks-tag a       { color: inherit; text-decoration: none; transition: color 0.2s; }
-.ks-tag a:hover { color: var(--ks-color-brand-teal); }
+.ks-tag a       { color: inherit; text-decoration: none; transition: color var(--ks-motion-duration-default) var(--ks-motion-easing-default); }
+.ks-tag a:hover { color: var(--ks-color-brand-turquesa); }
 .ks-tag--node {
   background:   var(--ks-color-tint-teal-05);
   border-color: var(--ks-color-tint-teal-22);
-  color:        var(--ks-color-brand-teal);
+  color:        var(--ks-color-brand-turquesa);
 }
 
-/* ── Chip · interactivo (filtros) ─────────────────────────────── */
+/* Chip · interactivo (filtros) */
 .ks-chip {
   font-family:   var(--ks-typography-family-sans);
   font-size:     var(--ks-typography-size-meta-l);
@@ -753,7 +820,494 @@
   background:   var(--ks-surface-muted);
 }
 
-/* ── Tablas globales ──────────────────────────────────────────── */
+/* FAQ acordeón · preguntas frecuentes. <details>/<summary> nativo,
+   cero JS, cero !important. Portado de visual guidelines v6.1.1
+   (vg-faq-* → ks-faq-*); integrado en v7.4.2 con tokens canónicos
+   (corregido --ks-color-brand-teal → turquesa: el alias ya no existe
+   en este paquete). Componente Layer 2: cualquier post puede usarlo. */
+.ks-faq {
+  margin: var(--ks-space-xl) 0;
+}
+.ks-faq-titulo {
+  font-family:    var(--ks-typography-family-mono);
+  font-size:      var(--ks-typography-size-meta-l);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color:          var(--ks-color-text-55);
+  font-weight:    500;
+  margin-bottom:  var(--ks-space-lg);
+}
+.ks-faq-item {
+  border-top: 1px solid var(--ks-color-border-default);
+  margin-top: -1px;   /* afinado local: colapsa bordes contiguos del acordeón */
+}
+.ks-faq-item:last-child {
+  border-bottom: 1px solid var(--ks-color-border-default);
+}
+.ks-faq-item summary {
+  list-style:  none;
+  cursor:      pointer;
+  padding:     14px 28px 14px 0;   /* afinado local: caja de pregunta + hueco del marcador — racional v6.1.1 */
+  font-family: var(--ks-typography-family-sans);
+  font-size:   var(--ks-typography-size-body-s);
+  font-weight: 500;
+  color:       var(--ks-color-text-87);
+  line-height: 1.5;
+  position:    relative;
+  user-select: none;
+  transition:  color var(--ks-motion-duration-default) var(--ks-motion-easing-default);
+}
+.ks-faq-item summary::-webkit-details-marker { display: none; }
+.ks-faq-item summary::after {
+  content:   "\2304";
+  position:  absolute;
+  right:     4px;    /* afinado local: marcador pegado al borde óptico */
+  top:       50%;
+  transform: translateY(-60%);
+  font-size: 22px;   /* afinado local: marcador a tamaño de glifo, no de texto */
+  color:     var(--ks-color-text-45);
+  transition: transform var(--ks-motion-duration-default) var(--ks-motion-easing-default);
+}
+.ks-faq-item[open] summary::after {
+  transform: translateY(-30%) rotate(180deg);
+}
+.ks-faq-item summary:hover {
+  color: var(--ks-color-text-62);
+}
+.ks-faq-item summary:focus-visible {
+  outline:        2px solid var(--ks-color-brand-turquesa);
+  outline-offset: 2px;
+  border-radius:  var(--ks-radius-sm);
+}
+.ks-faq-answer {
+  padding:     0 0 var(--ks-space-md) 0;
+  font-family: var(--ks-typography-family-serif);
+  font-size:   var(--ks-typography-size-body-s);
+  line-height: 1.7;
+  color:       var(--ks-color-text-72);
+}
+.ks-faq-answer p {
+  margin: 0 0 var(--ks-space-sm) 0;
+}
+.ks-faq-answer p:last-child { margin-bottom: 0; }
+.ks-faq-answer strong { color: var(--ks-color-text-87); }
+.ks-faq-answer em { font-style: italic; }
+@media (max-width: 600px) {
+  .ks-tag { font-size: var(--ks-typography-size-meta-xs); padding: 3px 8px; }
+}
+
+
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║ BLOQUE 3 · Layer 2 · COMPONENTES II — ficha portfolio          ║
+   ║                                                                ║
+   ║ Componente de ficha (Studio/Artwork). NO es un scope: el       ║
+   ║ prose de single-portfolio entra por el scope editorial         ║
+   ║ (puente del Bloque 1); esta ficha es Layer 2.                  ║
+   ║ ACTIVACIÓN: clases propias (.ks-portfolio-*).                  ║
+   ║ CUÁNDO EDITAR: rediseño de fichas de proyecto/obra.            ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+.ks-portfolio-header {
+  display:               grid;
+  grid-template-columns: 1fr 1fr;
+  gap:                   var(--ks-space-2xl);
+  margin-top:            var(--ks-space-xl);
+  margin-bottom:         var(--ks-space-2xl);
+  padding-bottom:        var(--ks-space-2xl);
+  border-bottom:         1px solid var(--ks-color-border-default);
+}
+.ks-portfolio-meta-grid {
+  display:               grid;
+  grid-template-columns: auto 1fr;
+  gap:                   6px var(--ks-space-lg);   /* afinado local: medio paso bajo xs */
+  font-family:           var(--ks-typography-family-mono);
+  font-size:             var(--ks-typography-size-meta-m);
+  line-height:           1.5;
+  color:                 var(--ks-color-text-52);
+}
+.ks-portfolio-meta-grid dt {
+  font-family:    var(--ks-typography-family-condensed);
+  font-size:      var(--ks-typography-size-meta-s);
+  font-weight:    600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color:          var(--ks-color-text-45);
+  padding-top:    1px;   /* afinado local: alineación óptica dt/dd */
+}
+.ks-portfolio-meta-grid dd {
+  font-family: var(--ks-typography-family-mono);
+  font-size:   var(--ks-typography-size-meta-m);
+  color:       var(--ks-color-text-62);
+}
+
+@media (max-width: 768px) {
+  .ks-portfolio-header {
+    grid-template-columns: 1fr;
+    gap:                   var(--ks-space-lg);
+  }
+}
+
+
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║ BLOQUE 4 · SCOPE ARTEFACTO — identidad Lab · embeds            ║
+   ║                                                                ║
+   ║ ACTIVACIÓN: solo clase explícita .ks-scope-artefacto /         ║
+   ║ .ks-artefacto-*. Sin puente WP — los artefactos son HTML       ║
+   ║ propio siempre.                                                ║
+   ║ CUÁNDO EDITAR: cambios del marco de embeds del Lab.            ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+.ks-scope-artefacto {
+  box-sizing:  border-box;
+  font-family: var(--ks-typography-family-sans);
+  color:       var(--ks-color-text-87);
+  line-height: 1.5;
+}
+.ks-scope-artefacto *,
+.ks-scope-artefacto *::before,
+.ks-scope-artefacto *::after {
+  box-sizing: inherit;
+}
+
+.ks-artefacto-embed {
+  width:         100%;
+  min-height:    var(--ks-size-embed-min);
+  border:        1px solid var(--ks-color-border-default);
+  border-radius: var(--ks-radius-md);
+  background:    var(--ks-surface-elevated);
+  overflow:      hidden;
+}
+.ks-artefacto-embed iframe {
+  width:  100%;
+  height: var(--ks-size-embed-iframe);
+  border: none;
+}
+
+.ks-artefacto-placeholder {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  min-height:      var(--ks-size-embed-min);
+  background:      var(--ks-surface-muted);
+  border-radius:   var(--ks-radius-md);
+  font-family:     var(--ks-typography-family-mono);
+  font-size:       14px;   /* afinado local 14px — paridad con asides editoriales */
+  color:           var(--ks-color-text-38);
+  letter-spacing:  0.04em;
+}
+
+
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║ BLOQUE 5 · SCOPE WORDPRESS-SALIENT · tramo archive             ║
+   ║ category / tag / author                                        ║
+   ║                                                                ║
+   ║ Pertenece al scope wordpress-salient del catálogo: restyling   ║
+   ║ del render del theme, no identidad propia.                     ║
+   ║ ACTIVACIÓN: body.archive (clase nativa WP — el archivo no      ║
+   ║ tiene HTML propio, se restyla el render de Salient).           ║
+   ║ Alinea el archive con /notes/ sin tocar Theme Options.         ║
+   ║ 5 frentes: header editorial · grid 3-cols · tipografía KS en   ║
+   ║ cards · chips hierro · paginación. La camisa de folio (ancho   ║
+   ║ del container) vive en el Bloque 8 — necesita !important.      ║
+   ║ CUÁNDO EDITAR: rediseño de archives.                           ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+/* Header del archive · editorialización */
+body.archive .blog-archive-header {
+  margin-bottom:  var(--ks-space-xl);
+  padding-bottom: var(--ks-space-md);
+  border-bottom:  1px solid var(--ks-color-text-28);
+}
+body.archive .blog-archive-header .section-title h1 {
+  font-family:    var(--ks-typography-family-serif);
+  font-weight:    400;
+  font-size:      var(--ks-size-hero-m);
+  line-height:    1.15;
+  letter-spacing: -0.01em;
+  color:          var(--ks-color-ink);
+  margin:         0;
+}
+body.archive .blog-archive-header .section-title h1 small,
+body.archive .blog-archive-header .nectar-archive-tax-count {
+  display:        inline-block;
+  margin-left:    var(--ks-space-md);
+  padding:        2px 8px;   /* afinado local: contador compacto */
+  background:     var(--ks-color-brand-turquesa);
+  font-family:    var(--ks-typography-family-mono);
+  font-size:      var(--ks-typography-size-meta-s);
+  font-weight:    500;
+  letter-spacing: 0.08em;
+  color:          var(--ks-surface-elevated);
+  vertical-align: middle;
+  border-radius:  var(--ks-radius-sm);
+}
+body.archive .blog-archive-header .term-description,
+body.archive .blog-archive-header .taxonomy-description {
+  margin-top:  var(--ks-space-md);
+  max-width:   62ch;
+  font-family: var(--ks-typography-family-serif);
+  font-size:   var(--ks-typography-size-body-m);
+  font-style:  italic;
+  line-height: 1.55;
+  color:       var(--ks-color-text-72);
+}
+
+/* Grid 3 cols como /notes/ — sin tocar marcado de Salient */
+body.archive .nectar-post-grid {
+  display:               grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:                   var(--ks-space-lg);
+  background:            transparent;
+}
+@media (max-width: 999px) {
+  body.archive .nectar-post-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  body.archive .nectar-post-grid { grid-template-columns: 1fr; }
+}
+body.archive .nectar-post-grid-item {
+  width:         auto;
+  grid-column:   auto;
+  grid-row:      auto;
+  border-radius: var(--ks-radius-md);
+  overflow:      hidden;
+}
+
+/* Cards · text-color dark + tipografía KS */
+body.archive .nectar-post-grid-wrap.text-color-light {
+  background: transparent;
+}
+body.archive .nectar-post-grid-item h2,
+body.archive .nectar-post-grid-item h2 a,
+body.archive .nectar-post-grid-item .post-title,
+body.archive .nectar-post-grid-item .post-title a {
+  font-family:    var(--ks-typography-family-serif);
+  font-weight:    500;
+  font-size:      var(--ks-typography-size-h3);
+  line-height:    1.25;
+  letter-spacing: -0.005em;
+  color:          var(--ks-color-ink);
+}
+
+/* Chips de categoría · SOLO pinta el enlace, no el contenedor.
+   Fix 2026-06-03 (auditoría GPT 3.1): el contenedor llevaba fondo y
+   producía doble chip / banda turquesa. Patrón único de chip de
+   categoría en todo el sitio: HIERRO + mono (ver Bloque 8 para la
+   variante a.style-button sobre imagen). */
+body.archive .nectar-post-grid-item .meta-category,
+body.archive .nectar-post-grid-item .category {
+  display:       inline;
+  background:    transparent;
+  padding:       0;
+  border-radius: 0;
+}
+body.archive .nectar-post-grid-item .meta-category a,
+body.archive .nectar-post-grid-item a.category {
+  display:         inline-block;
+  padding:         3px 8px;   /* afinado local: chip compacto */
+  background:      var(--ks-color-brand-hierro);
+  font-family:     var(--ks-typography-family-mono);
+  font-size:       var(--ks-typography-size-meta-s);
+  font-weight:     500;
+  letter-spacing:  0.08em;
+  text-transform:  none;
+  color:           var(--ks-surface-elevated);
+  border-radius:   var(--ks-radius-sm);
+  text-decoration: none;
+}
+body.archive .nectar-post-grid-item .date,
+body.archive .nectar-post-grid-item .meta-date,
+body.archive .nectar-post-grid-item time,
+body.archive .nectar-post-grid-item .author,
+body.archive .nectar-post-grid-item .meta-author {
+  font-family:    var(--ks-typography-family-mono);
+  font-size:      var(--ks-typography-size-meta-m);
+  color:          var(--ks-color-text-52);
+  letter-spacing: 0.02em;
+}
+body.archive .nectar-post-grid-item .excerpt,
+body.archive .nectar-post-grid-item p {
+  font-family: var(--ks-typography-family-serif);
+  font-size:   var(--ks-typography-size-body-s);
+  line-height: 1.55;
+  color:       var(--ks-color-text-78);
+}
+
+/* Fallback layout clásico (si blog_type cambia) */
+.archive .post .post-header h2,
+.archive .post .post-header h2 a {
+  font-family: var(--ks-typography-family-serif);
+  color:       var(--ks-color-ink);
+}
+.archive .post .post-meta .date,
+.archive .post .post-meta .meta-author {
+  font-family: var(--ks-typography-family-mono);
+  font-size:   var(--ks-typography-size-meta-s);
+  color:       var(--ks-color-text-52);
+}
+
+/* Paginación */
+body.archive .pagination,
+body.archive .nav-links {
+  margin-top:     var(--ks-space-xl);
+  padding-top:    var(--ks-space-md);
+  border-top:     1px solid var(--ks-color-text-28);
+  font-family:    var(--ks-typography-family-condensed);
+  font-size:      var(--ks-typography-size-body-s);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+body.archive .pagination a,
+body.archive .nav-links a {
+  color: var(--ks-color-brand-turquesa);
+}
+
+
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║ BLOQUE 6 · Layer 2 · COMPONENTES III — navegación, meta,       ║
+   ║ avisos, tablas, accesibilidad                                  ║
+   ║ Piezas de calibre universal compartidas entre scopes.          ║
+   ║ CUÁNDO EDITAR: cambios que deben verse igual en todos los      ║
+   ║ scopes.                                                        ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+/* Breadcrumbs */
+.ks-breadcrumbs {
+  font-family:    var(--ks-typography-family-mono);
+  font-size:      var(--ks-typography-size-meta-s);
+  letter-spacing: 0.04em;
+  color:          var(--ks-color-text-52);
+  padding:        var(--ks-space-sm) var(--ks-space-lg);
+  border-bottom:  1px solid var(--ks-color-border-default);
+  background:     var(--ks-surface-bg);
+}
+.ks-breadcrumbs a {
+  color:           var(--ks-color-text-52);
+  text-decoration: none;
+  transition:      color var(--ks-motion-duration-default) var(--ks-motion-easing-default);
+}
+.ks-breadcrumbs a:hover    { color: var(--ks-color-brand-turquesa); }
+.ks-breadcrumbs .ks-bc-sep { margin: 0 var(--ks-space-xs); color: var(--ks-color-text-28); }
+
+/* Variante en contexto WPBakery / single-post: transparente.
+   Especificidad 0-2-0 gana al 0-1-0 base — sin !important. */
+.wpb_wrapper .ks-breadcrumbs,
+.single-post .ks-breadcrumbs {
+  background:    transparent;
+  border-bottom: none;
+  padding:       0;
+}
+
+/* Article meta · ficha cabecera */
+.ks-article-meta {
+  display:       flex;
+  flex-wrap:     wrap;
+  gap:           var(--ks-space-md);
+  align-items:   center;
+  padding:       var(--ks-space-md) 0;
+  margin-bottom: var(--ks-space-xl);
+  border-bottom: 1px solid var(--ks-color-border-default);
+}
+.ks-article-meta .ks-meta-item {
+  font-family: var(--ks-typography-family-mono);
+  font-size:   var(--ks-typography-size-meta-m);
+  color:       var(--ks-color-text-52);
+  display:     flex;
+  align-items: center;
+  gap:         var(--ks-space-xs);
+}
+.ks-article-meta .ks-meta-node {
+  font-family:    var(--ks-typography-family-condensed);
+  font-size:      var(--ks-typography-size-meta-m);
+  font-weight:    500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color:          var(--ks-color-brand-turquesa);
+  background:     var(--ks-color-tint-teal-05);
+  padding:        2px var(--ks-space-xs);
+  border-radius:  var(--ks-radius-sm);
+}
+.ks-article-meta .ks-meta-cat a {
+  font-family:     var(--ks-typography-family-sans);
+  font-size:       var(--ks-typography-size-meta-l);
+  color:           var(--ks-color-text-78);
+  text-decoration: none;
+  border:          1px solid var(--ks-color-border-default);
+  border-radius:   999px;
+  padding:         2px var(--ks-space-sm);
+  transition:
+    color        var(--ks-motion-duration-default) var(--ks-motion-easing-default),
+    border-color var(--ks-motion-duration-default) var(--ks-motion-easing-default);
+}
+.ks-article-meta .ks-meta-cat a:hover {
+  color:        var(--ks-color-ink);
+  border-color: var(--ks-color-border-strong);
+}
+
+/* Overhead · barra de metadatos sobre artículo */
+.ks-post-overhead {
+  display:     flex;
+  flex-wrap:   wrap;
+  align-items: center;
+  gap:         var(--ks-space-sm);
+  margin-top:  var(--ks-space-md);
+}
+.ks-reading-time {
+  font-family:    var(--ks-typography-family-mono);
+  font-size:      var(--ks-typography-size-meta-m);
+  font-weight:    400;
+  letter-spacing: 0.06em;
+  color:          var(--ks-color-text-52);
+}
+.ks-overhead-sep {
+  width:          1px;
+  height:         14px;   /* afinado local: separador a cap-height del mono 12px */
+  background:     var(--ks-color-border-strong);
+  display:        inline-block;
+  vertical-align: middle;
+  margin:         0 2px;
+}
+
+/* Notices · información contextual */
+.ks-notice {
+  font-family:   var(--ks-typography-family-sans);
+  font-size:     var(--ks-typography-size-body-s);
+  line-height:   1.6;
+  padding:       var(--ks-space-md) var(--ks-space-lg);
+  border-radius: var(--ks-radius-md);
+  margin:        var(--ks-space-lg) 0;
+}
+.ks-notice--teal  { background: var(--ks-color-tint-teal-05);  border-left: 3px solid var(--ks-color-tint-teal-22);  color: var(--ks-color-text-87); }
+.ks-notice--red   { background: var(--ks-color-tint-red-05);   border-left: 3px solid var(--ks-color-tint-red-22);   color: var(--ks-color-text-87); }
+.ks-notice--beige { background: var(--ks-color-tint-beige-10); border-left: 3px solid var(--ks-color-tint-beige-50); color: var(--ks-color-text-87); }
+
+/* Callout · concepto clave propio */
+.ks-callout {
+  background:    var(--ks-color-tint-teal-05);
+  border:        2px solid var(--ks-color-brand-turquesa);
+  border-radius: var(--ks-radius-md);
+  padding:       var(--ks-space-lg) var(--ks-space-xl);
+  margin:        var(--ks-space-xl) 0;
+}
+.ks-callout-label {
+  display:        block;
+  font-family:    var(--ks-typography-family-mono);
+  font-size:      var(--ks-typography-size-meta-s);
+  font-weight:    600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color:          var(--ks-color-brand-turquesa);
+  margin-bottom:  var(--ks-space-sm);
+}
+.ks-callout p {
+  font-family: var(--ks-typography-family-serif);
+  font-size:   var(--ks-typography-size-body-m);
+  line-height: 1.5;
+  color:       var(--ks-color-ink);
+  margin:      0;
+}
+
+/* Tablas */
 .ks-table-prose {
   width:           100%;
   border-collapse: collapse;
@@ -810,7 +1364,24 @@
 }
 .ks-table-data tr:hover td { background: var(--ks-surface-muted); }
 
-/* Responsive componentes */
+/* Focus visible · accesibilidad de teclado. Solo :focus-visible
+   (no en clic de ratón). v7.4.1 extiende cobertura al scope
+   editorial completo y a los enlaces de asides derivadas. */
+:is(.ks-scope-editorial, .ks-prose,
+    .single-post .wpb_text_column,
+    .single-portfolio .wpb_text_column) a:focus-visible,
+.ks-aside-derivada__body a:focus-visible,
+.ks-card a:focus-visible,
+.ks-tag a:focus-visible,
+.ks-chip:focus-visible,
+.ks-breadcrumbs a:focus-visible,
+.ks-article-meta a:focus-visible {
+  outline:        2px solid var(--ks-color-brand-turquesa);
+  outline-offset: 3px;
+  border-radius:  var(--ks-radius-sm);
+}
+
+/* Responsive transversales */
 @media (max-width: 768px) {
   .ks-article-meta {
     flex-direction: column;
@@ -826,11 +1397,77 @@
     display:    block;
     overflow-x: auto;
   }
-  .ks-portfolio-header {
-    grid-template-columns: 1fr;
-    gap:                   var(--ks-space-lg);
-  }
 }
+
+
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║ BLOQUE 7 · SCOPE WORDPRESS-SALIENT · tramo folios              ║
+   ║ Camisas de folio y afinados de contexto WP que se resuelven    ║
+   ║ por cascada, sin !important (no son Layer 3)                   ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+/* Camisas editoriales */
+.ks-post-wrap {
+  max-width:     860px;   /* medida estructural del folio post — racional v7.0 */
+  margin:        var(--ks-space-3xl) auto;
+  padding:       var(--ks-space-2xl) var(--ks-space-2xl) var(--ks-space-3xl);
+  background:    var(--ks-surface-elevated);
+  border:        1px solid var(--ks-color-border-default);
+  border-radius: var(--ks-radius-lg);
+  box-shadow:    var(--ks-shadow-card);
+}
+.ks-portfolio-wrap {
+  max-width:     1100px;  /* medida estructural del folio portfolio — racional v7.0 */
+  margin:        var(--ks-space-3xl) auto;
+  padding:       var(--ks-space-2xl) var(--ks-space-2xl) var(--ks-space-3xl);
+  background:    var(--ks-surface-elevated);
+  border:        1px solid var(--ks-color-border-default);
+  border-radius: var(--ks-radius-lg);
+  box-shadow:    var(--ks-shadow-card);
+}
+
+/* Single posts · prose sin tope de ancho propio.
+   El wrap controla el ancho (92%); el prose se libera del max-width
+   canónico SOLO en posts. Variable scoping: redefinir
+   --ks-typography-prose-max aquí hace que el Bloque 1 lo resuelva
+   a none automáticamente. */
+.single-post .wpb_text_column,
+.single-post .content-inner,
+.single-portfolio .wpb_text_column,
+.single-portfolio .content-inner {
+  /* v7.4.3: añadido single-portfolio — sin esto .content-inner
+     quedaba a 680px y capaba a .ks-portfolio-wrap (1100px) por
+     ser su ancestro (auditoría Codex 11-jun). */
+  --ks-typography-prose-max: none;
+}
+
+/* Cuerpo de single posts · 17px / 1.75 — más compacto que el prose
+   canónico. Misma especificidad que el :is() del Bloque 1: gana por
+   orden de cascada (este bloque carga después). Sin !important. */
+.single-post .wpb_text_column p,
+.single-post .wpb_text_column li,
+.single-post .content-inner > p,
+.single-post .content-inner > ul li,
+.single-post .content-inner > ol li {
+  /* v7.4.3: .content-inner añadido — un post sin WPBakery entraba
+     al prose por el puente pero no recibía el cuerpo compacto
+     (auditoría Codex 11-jun). */
+  font-size:   var(--ks-typography-size-body-m);
+  line-height: 1.75;
+}
+
+/* h6 en single posts · overline mono con tracking ampliado (0.1em
+   vs 0.06em base) y margen mayor. Gana por orden de cascada. */
+.single-post .wpb_text_column h6 {
+  letter-spacing: 0.1em;
+  margin-bottom:  var(--ks-space-sm);
+}
+
+/* Sombra suave en columnas WPBakery con background inline */
+.single-post .vc_row[data-vc-full-width] .vc_column_container[style*="background-color"] {
+  box-shadow: var(--ks-shadow-column-elevated);
+}
+
 @media (max-width: 680px) {
   .ks-post-wrap,
   .ks-portfolio-wrap {
@@ -846,844 +1483,223 @@
     border-radius: var(--ks-radius-md);
   }
   .ks-post-overhead { gap: var(--ks-space-xs); }
-  .ks-tag           { font-size: 10px; padding: 3px 8px; }
-}
-
-
-
-/* ── Focus visible · accesibilidad de teclado ─────────────────
-   Anillo de foco en interactivos KS para navegación con teclado.
-   Solo :focus-visible (no en clic de ratón). Añadido 2026-06-03 (GPT 8.3). */
-.ks-prose a:focus-visible,
-.ks-card a:focus-visible,
-.ks-tag a:focus-visible,
-.ks-chip:focus-visible,
-.ks-breadcrumbs a:focus-visible,
-.ks-article-meta a:focus-visible {
-  outline:        2px solid var(--ks-color-brand-teal);
-  outline-offset: 3px;
-  border-radius:  var(--ks-radius-sm);
-}
-
-/* ╔══════════════════════════════════════════════════════════════╗
-   ║ BLOQUE 3 · ks-scope-editorial.css v7.0 · scope editorial     ║
-   ╚══════════════════════════════════════════════════════════════╝ */
-
-/* Revisado strip · cabecera de artículo con fecha de última revisión */
-.ks-revisado-strip {
-  display:       flex;
-  flex-wrap:     wrap;
-  align-items:   baseline;
-  gap:           var(--ks-space-sm);
-  margin:        var(--ks-space-md) 0 var(--ks-space-lg);
-  padding:       12px 16px;
-  background:    var(--ks-color-tint-teal-05);
-  border-left:   3px solid var(--ks-color-brand-teal);
-  border-radius: var(--ks-radius-sm);
-}
-.ks-revisado-strip__label {
-  font-family:    var(--ks-typography-family-mono);
-  font-size:      11px;
-  font-weight:    600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color:          var(--ks-color-brand-teal);
-  white-space:    nowrap;
-}
-.ks-revisado-strip__text {
-  font-family: var(--ks-typography-family-serif);
-  font-size:   14px;
-  font-style:  italic;
-  color:       var(--ks-color-text-72);
-  line-height: 1.5;
-}
-
-/* Grid editorial 3-2 (texto + marginalia) */
-.ks-grid-3-2 {
-  display:               grid;
-  grid-template-columns: 3fr 2fr;
-  gap:                   var(--ks-space-xl);
-  margin:                var(--ks-space-xl) 0;
-  align-items:           start;
-}
-.ks-grid-3-2 > .ks-col-aside { font-size: 0.95em; }
-
-/* Asides BEM · tres niveles: __concept (énfasis alto), __card (medio), __note (bajo) */
-.ks-aside-concept {
-  background:    var(--ks-color-tint-teal-05);
-  border-radius: var(--ks-radius-md);
-  padding:       var(--ks-space-md) var(--ks-space-lg);
-  margin-bottom: var(--ks-space-md);
-}
-.ks-aside-concept__label {
-  display:        block;
-  font-family:    var(--ks-typography-family-mono);
-  font-size:      10px;
-  font-weight:    600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color:          var(--ks-color-brand-teal);
-  margin-bottom:  8px;
-}
-.ks-aside-concept__body {
-  font-family: var(--ks-typography-family-serif);
-  font-size:   var(--ks-typography-size-aside);
-  line-height: var(--ks-typography-aside-line);
-  color:       var(--ks-color-text-87);
-}
-.ks-aside-concept__body p { margin: 0 0 var(--ks-space-sm); }
-.ks-aside-concept__body p:last-child { margin-bottom: 0; }
-.ks-aside-concept__body strong { color: var(--ks-color-ink); }
-
-.ks-aside-card {
-  background:    var(--ks-surface-muted);
-  border:        1px solid var(--ks-color-border-default);
-  border-radius: var(--ks-radius-sm);
-  padding:       var(--ks-space-sm) var(--ks-space-md);
-  margin-bottom: var(--ks-space-md);
-}
-.ks-aside-card__label {
-  display:        block;
-  font-family:    var(--ks-typography-family-mono);
-  font-size:      10px;
-  font-weight:    500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color:          var(--ks-color-text-55);
-  margin-bottom:  6px;
-}
-.ks-aside-card__body {
-  font-family: var(--ks-typography-family-serif);
-  font-size:   var(--ks-typography-size-aside);
-  line-height: var(--ks-typography-aside-line);
-  color:       var(--ks-color-text-72);
-}
-.ks-aside-card__body p { margin: 0 0 var(--ks-space-sm); }
-.ks-aside-card__body p:last-child { margin-bottom: 0; }
-.ks-aside-card__body strong { color: var(--ks-color-ink); }
-
-.ks-aside-note {
-  font-family:   var(--ks-typography-family-serif);
-  font-size:     14px;
-  line-height:   1.55;
-  color:         var(--ks-color-text-72);
-  margin-bottom: var(--ks-space-md);
-  padding-left:  var(--ks-space-sm);
-  border-left:   1px solid var(--ks-color-border-default);
-}
-
-/* Aside derivada · cobre · remisión a pieza hermana del nodo (3er nivel).
-   Color = función (no énfasis): puerta a otra pieza del mismo nodo.
-   Cobre de scope, no del canon. Sin !important: gana por especificidad. */
-.ks-aside-derivada {
-  background:    var(--ks-color-copper-surface);
-  border-left:   3px solid var(--ks-color-copper-rule);
-  border-radius: var(--ks-radius-sm);
-  padding:       var(--ks-space-sm) var(--ks-space-md);
-  margin-bottom: var(--ks-space-md);
-}
-.ks-aside-derivada__label {
-  display:        block;
-  font-family:    var(--ks-typography-family-mono);
-  font-size:      10px;
-  font-weight:    600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color:          var(--ks-color-copper-label);
-  margin-bottom:  6px;
-}
-.ks-aside-derivada__label::before { content: "\2193  "; }
-.ks-aside-derivada__body {
-  font-family: var(--ks-typography-family-serif);
-  font-size:   var(--ks-typography-size-aside);
-  line-height: var(--ks-typography-aside-line);
-  color:       var(--ks-color-text-72);
-}
-.ks-aside-derivada__body p { margin: 0 0 var(--ks-space-sm); }
-.ks-aside-derivada__body p:last-child { margin-bottom: 0; }
-.ks-aside-derivada__body strong { color: var(--ks-color-ink); }
-.ks-aside-derivada__body a {
-  color:           var(--ks-color-copper-link);
-  text-decoration: none;
-  border-bottom:   1px dotted var(--ks-color-copper-rule);
-}
-.ks-aside-derivada__body a:hover { color: var(--ks-color-copper-hover); }
-
-/* Pullquote · frase propia destacada (para citas de terceros usar <blockquote>) */
-.ks-pullquote {
-  font-family:  var(--ks-typography-family-serif);
-  font-size:    18px;
-  font-style:   italic;
-  line-height:  1.45;
-  color:        var(--ks-color-ink);
-  padding-left: var(--ks-space-md);
-  border-left:  3px solid var(--ks-color-brand-teal);
-  margin:       var(--ks-space-md) 0;
-}
-
-/* Highlight · resalte tipo marcador sobre la palabra/frase */
-.ks-highlight {
-  background: linear-gradient(180deg,
-                              transparent 55%,
-                              var(--ks-color-tint-teal-22) 55%,
-                              var(--ks-color-tint-teal-22) 92%,
-                              transparent 92%);
-  padding: 0 2px;
-}
-
-/* Editorial text · cuerpo sans compacto para UI editorial */
-.ks-editorial-text {
-  font-family: var(--ks-typography-family-sans);
-  font-size:   var(--ks-typography-size-body-m);
-  line-height: 1.65;
-  color:       var(--ks-color-text-87);
-}
-
-/* Responsive scope editorial */
-@media (max-width: 960px) {
-  .ks-grid-3-2 {
-    grid-template-columns: 1fr;
-    gap:                   var(--ks-space-md);
-  }
-  .ks-grid-3-2 > .ks-col-aside { margin-top: var(--ks-space-sm); }
-  .ks-aside-concept,
-  .ks-aside-card { margin-bottom: var(--ks-space-md); }
-  .ks-pullquote { font-size: 16px; }
-}
-@media (max-width: 600px) {
-  .ks-revisado-strip { flex-direction: column; gap: 6px; }
-  .ks-revisado-strip__text { font-size: 13px; }
 }
 
 
 /* ╔══════════════════════════════════════════════════════════════╗
-   ║ BLOQUE 4 · ks-scope-artefacto.css v7.0 · scope artefacto     ║
-   ╚══════════════════════════════════════════════════════════════╝ */
-
-.ks-scope-artefacto {
-  box-sizing:  border-box;
-  font-family: var(--ks-typography-family-sans);
-  color:       var(--ks-color-text-87);
-  line-height: 1.5;
-}
-.ks-scope-artefacto *,
-.ks-scope-artefacto *::before,
-.ks-scope-artefacto *::after {
-  box-sizing: inherit;
-}
-
-.ks-artefacto-embed {
-  width:         100%;
-  min-height:    var(--ks-size-embed-min);
-  border:        1px solid var(--ks-color-border-default);
-  border-radius: var(--ks-radius-md);
-  background:    var(--ks-surface-elevated);
-  overflow:      hidden;
-}
-.ks-artefacto-embed iframe {
-  width:  100%;
-  height: var(--ks-size-embed-iframe);
-  border: none;
-}
-
-.ks-artefacto-placeholder {
-  display:         flex;
-  align-items:     center;
-  justify-content: center;
-  min-height:      var(--ks-size-embed-min);
-  background:      var(--ks-surface-muted);
-  border-radius:   var(--ks-radius-md);
-  font-family:     var(--ks-typography-family-mono);
-  font-size:       14px;
-  color:           var(--ks-color-text-38);
-  letter-spacing:  0.04em;
-}
-
-
-/* ╔══════════════════════════════════════════════════════════════╗
-   ║ BLOQUE 5 · scope WordPress-Salient · overrides base           ║
+   ║ BLOQUE 8 · SCOPE WORDPRESS-SALIENT · tramo chasis — Layer 3    ║
+   ║ Overrides del theme. ÚNICO bloque con !important admitido.     ║
    ║                                                                ║
-   ║ !important está permitido aquí y en el Bloque 6, siempre con  ║
-   ║ comentario inline que indica contra qué inline-style de       ║
-   ║ Salient/WPBakery se pelea. Sin comentario justificativo, no   ║
-   ║ se acepta !important en el paquete.                            ║
+   ║ Doctrina !important (tres clases):                             ║
+   ║ A  — vs style="" o JS runtime → !important + justificación     ║
+   ║      inline obligatoria.                                       ║
+   ║ A' — vs CSS de Nectar/Salient con ID único de instancia        ║
+   ║      (especificidad 1-x-x irreproducible). !important con flag  ║
+   ║      VERIFICAR: si inspección prueba que el conflicto es CSS    ║
+   ║      estático, degradar a Clase B y eliminar.                  ║
+   ║ B  — vs CSS embebido de Theme Options (<style>). Sin           ║
+   ║      !important: este paquete carga después y gana por cascada. ║
    ╚══════════════════════════════════════════════════════════════╝ */
 
-/* Fondo global · Salient inyecta #f8f8f8 vía Theme Options inline */
-body,
-.container-wrap {
-  background-color: var(--ks-surface-bg) !important;  /* vs Theme Options inline */
+/* ── 8.1 · Base global — Clase B · sin !important ──────────────
+   Theme Options imprime CSS embebido; este paquete vive en el
+   Customizer (wp_custom_css), que WordPress imprime DESPUÉS del
+   CSS dinámico del theme — refuerza que las clases B ganen por
+   orden de cascada sin !important.
+   html body (0-0-2) supera el body (0-0-1) del theme.
+   VERIFICAR EN FRONTEND tras el volcado: si algún valor de Salient
+   sobrevive, subir especificidad ANTES de recurrir a !important. */
+html body,
+body .container-wrap {
+  background-color: var(--ks-surface-bg);
 }
-
-/* Tipografía base · Salient carga Open Sans 14px inline */
-body {
-  font-family: var(--ks-typography-family-sans) !important;  /* vs Theme Options inline */
+html body {
+  font-family: var(--ks-typography-family-sans);
   font-size:   var(--ks-typography-size-body-s);
-  color:       var(--ks-color-text-87) !important;           /* vs Theme Options inline */
+  color:       var(--ks-color-text-87);
 }
-h1, h2, h3, h4, h5, h6 {
-  color: var(--ks-color-ink) !important;  /* vs heading colors inline de Salient */
+body h1, body h2, body h3,
+body h4, body h5, body h6 {
+  color: var(--ks-color-ink);
 }
 
-/* Ocultar page-header de Salient en posts/portfolio
-   Salient inyecta display:block inline en estos contenedores. */
+/* Links globales — reset intencional global: Salient pinta los <a>
+   vía Theme Options en cualquier contexto (menú, footer, sidebar,
+   plugins). Restringir el selector dejaría zonas con el color
+   antiguo. Clase B. */
+a {
+  color:      var(--ks-color-brand-turquesa);
+  transition: color var(--ks-motion-duration-default) var(--ks-motion-easing-default);
+}
+a:hover { color: var(--ks-color-brand-cobalto); }
+
+/* Párrafos — reset intencional global. Salient añade
+   padding-bottom: 27px a todos los <p> vía CSS heredado; sin este
+   reset los párrafos acumulan doble espaciado. Clase B. */
+p {
+  padding-bottom: 0;
+  margin-bottom:  0.8em;
+}
+
+/* Page-header de Salient oculto en posts/portfolio — Clase B:
+   el display viene del CSS del theme, no de un style attribute.
+   .single-post #page-header-wrap (0-1-1-1) supera al selector de
+   ID del theme. VERIFICAR EN FRONTEND. */
 .single-post #page-header-wrap,
 .single-portfolio #page-header-wrap,
 .single-post #header-space,
 .single-portfolio #header-space,
 .single-post .featured-media-under-header,
 .single-portfolio .featured-media-under-header {
-  display: none !important;  /* vs display:block inline de Salient */
-}
-.single-post .container-wrap,
-.single-portfolio .container-wrap {
-  padding-top: var(--ks-size-header-offset) !important;  /* vs padding-top inline calculado por Salient */
-}
-
-/* Links globales
-   Reset intencional global porque Salient pinta los <a> via
-   Theme Options en cualquier contexto (menú, footer, sidebar,
-   plugins). Restringir el selector dejaría zonas con el color
-   antiguo de Salient. */
-a {
-  color:      var(--ks-color-brand-teal);
-  transition: color var(--ks-motion-duration-default) var(--ks-motion-easing-default);
-}
-a:hover { color: var(--ks-color-brand-blue); }
-
-/* Párrafos
-   Reset intencional global. Salient añade padding-bottom: 27px
-   a todos los <p> vía CSS heredado. Sin este reset, los párrafos
-   acumulan doble espaciado (Salient padding + KS margin). */
-p {
-  padding-bottom: 0;
-  margin-bottom:  0.8em;
-}
-
-/* Footer · temporalmente oculto hasta que se reconstruya el footer KS */
-#footer-outer { display: none !important; }  /* vs display:block inline de Salient */
-
-/* Nectar post grid (blog masonry de Salient).
-   Los !important de este grupo pelean contra estilos inline que
-   inyecta el plugin Nectar al renderizar las tarjetas del grid. */
-.nectar-post-grid .content-meta h2,
-.nectar-post-grid .content-meta h2 a {
-  font-family: var(--ks-typography-family-serif) !important;  /* vs plugin Nectar inline */
-  color:       var(--ks-color-ink) !important;                /* vs plugin Nectar inline */
-}
-.nectar-post-grid .content-meta .meta-category a {
-  font-family:    var(--ks-typography-family-condensed) !important;  /* vs plugin Nectar inline */
-  font-size:      var(--ks-typography-size-meta-s) !important;       /* vs plugin Nectar inline */
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color:          var(--ks-color-brand-teal) !important;             /* vs plugin Nectar inline */
-}
-
-/* Chip de categoría tipo "style-button" sobre la imagen (category-position-overlaid).
-   Salient/Nectar lo pinta como botón turquesa grande con padding 9px 18px.
-   Reducimos a chip editorial KS en negro hierro con texto sobre superficie elevada. */
-.nectar-post-grid-item .meta-category a.style-button {
-  background-color: var(--ks-color-brand-hierro) !important;          /* vs plugin Nectar inline turquesa */
-  color:            var(--ks-surface-elevated) !important;            /* vs plugin Nectar inline blanco */
-  font-family:      var(--ks-typography-family-mono) !important;      /* vs plugin Nectar inline sans */
-  font-size:        var(--ks-typography-size-meta-s) !important;      /* vs plugin Nectar inline 18px */
-  font-weight:      500;
-  letter-spacing:   0.08em;
-  text-transform:   none;
-  padding:          3px 8px !important;                               /* vs plugin Nectar inline 9px 18px */
-  border-radius:    var(--ks-radius-sm) !important;                   /* vs plugin Nectar inline 0px */
-  line-height:      1.4;
-}
-
-/* Saneamiento SPAN .meta-category v7.2.5 · 2026-05-27.
-   Home: oculta SPAN raw sin chips (vive como hermano del que sí los tiene).
-   Archive: el contenedor lleva bg turquesa que se ve como banda alrededor del texto;
-   le quitamos el bg para que solo los chips a.style-button pinten en negro. */
-.nectar-post-grid-item span.meta-category:not(:has(a.style-button)) {
   display: none;
 }
-.nectar-post-grid-item span.meta-category {
-  background: transparent !important;
-  padding: 0 !important;
-}
 
-.nectar-post-grid .content-meta .date,
-.nectar-post-grid .content-meta .nectar-love {
-  font-family: var(--ks-typography-family-mono) !important;          /* vs plugin Nectar inline */
-  font-size:   var(--ks-typography-size-meta-s) !important;          /* vs plugin Nectar inline */
-  color:       var(--ks-color-text-52) !important;                   /* vs plugin Nectar inline */
-}
+/* Footers ocultos hasta reconstruir el footer KS — Clase B para el
+   display del theme. #ks-footer conserva UN !important Clase A:
+   Salient inyecta display inline si el footer no está oculto desde
+   Theme Options. height/overflow/visibility del v7.3.0 PODADOS:
+   con display none ganando, eran ruido. */
+#footer-outer { display: none; }                /* B · CSS del theme — VERIFICAR */
+#ks-footer    { display: none !important; }     /* A · vs display inline de Salient */
 
-/* ── Archive · category / tag / author · v7.2 ──────────────────
-   Las páginas de archive de Salient (std-blog-sidebar) renderizan
-   con nectar-post-grid en layout-vert_staggered + category-position-
-   before-title + text-color-light. Contradice /notes/ que usa el
-   mismo grid con content_under_image + overlaid + dark.
-   Bloque alinea archive con /notes/ sin tocar Theme Options.
-   5 frentes: camisa folio-blog · header editorial · grid 3-cols ·
-   tipografía KS en cards · paginación.
-   ─────────────────────────────────────────────────────────────── */
-
-/* 1. Folio editorial · .container al 92% / 1600 max */
-body.archive .container-wrap > .container {
-  max-width: var(--ks-size-folio-blog) !important;     /* vs max-width inline calculado por Salient por breakpoint */
-  width:     var(--ks-size-folio-blog) !important;     /* vs width inline calculado por Salient por breakpoint */
-}
-@media (min-width: 1400px) {
-  body.archive .container-wrap > .container {
-    max-width: var(--ks-size-folio-blog-max) !important;  /* vs max-width inline de Salient */
-  }
-}
-
-/* 2. Header del archive · editorialización */
-body.archive .blog-archive-header {
-  margin-bottom:  var(--ks-space-xl);
-  padding-bottom: var(--ks-space-md);
-  border-bottom:  1px solid var(--ks-color-text-28);
-}
-body.archive .blog-archive-header .section-title h1 {
-  font-family:    var(--ks-typography-family-serif);
-  font-weight:    400;
-  font-size:      var(--ks-size-hero-m);
-  line-height:    1.15;
-  letter-spacing: -0.01em;
-  color:          var(--ks-color-ink);
-  margin:         0;
-}
-body.archive .blog-archive-header .section-title h1 small,
-body.archive .blog-archive-header .nectar-archive-tax-count {
-  display:        inline-block;
-  margin-left:    var(--ks-space-md);
-  padding:        2px 8px;
-  background:     var(--ks-color-brand-turquesa);
-  font-family:    var(--ks-typography-family-mono);
-  font-size:      var(--ks-typography-size-meta-s);
-  font-weight:    500;
-  letter-spacing: 0.08em;
-  color:          var(--ks-surface-elevated);
-  vertical-align: middle;
-  border-radius:  var(--ks-radius-sm);
-}
-body.archive .blog-archive-header .term-description,
-body.archive .blog-archive-header .taxonomy-description {
-  margin-top:  var(--ks-space-md);
-  max-width:   62ch;
-  font-family: var(--ks-typography-family-serif);
-  font-size:   var(--ks-typography-size-body-m);
-  font-style:  italic;
-  line-height: 1.55;
-  color:       var(--ks-color-text-72);
-}
-
-/* 3. Grid 3 cols como /notes/ (sin tocar marcado de Salient) */
-body.archive .nectar-post-grid {
-  display:               grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:                   var(--ks-space-lg);
-  background:            transparent;
-}
-@media (max-width: 999px) {
-  body.archive .nectar-post-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 640px) {
-  body.archive .nectar-post-grid { grid-template-columns: 1fr; }
-}
-body.archive .nectar-post-grid-item {
-  width:         auto;
-  grid-column:   auto;
-  grid-row:      auto;
-  border-radius: var(--ks-radius-md);
-  overflow:      hidden;
-}
-
-/* 4. Cards · text-color dark + tipografía KS */
-body.archive .nectar-post-grid-wrap.text-color-light {
-  background: transparent;
-}
-body.archive .nectar-post-grid-item h2,
-body.archive .nectar-post-grid-item h2 a,
-body.archive .nectar-post-grid-item .post-title,
-body.archive .nectar-post-grid-item .post-title a {
-  font-family:    var(--ks-typography-family-serif);
-  font-weight:    500;
-  font-size:      var(--ks-typography-size-h3);
-  line-height:    1.25;
-  letter-spacing: -0.005em;
-  color:          var(--ks-color-ink);
-}
-/* Chips de categoría en archive · SOLO pinta el enlace, no el contenedor.
-   Fix 2026-06-03 (auditoría GPT 3.1): el contenedor llevaba fondo y producía
-   doble chip / banda turquesa. Ahora contenedor transparente, chip en HIERRO. */
-body.archive .nectar-post-grid-item .meta-category,
-body.archive .nectar-post-grid-item .category {
-  display:    inline;
-  background: transparent;
-  padding:    0;
-  border-radius: 0;
-}
-body.archive .nectar-post-grid-item .meta-category a,
-body.archive .nectar-post-grid-item a.category {
-  display:         inline-block;
-  padding:         3px 8px;
-  background:      var(--ks-color-brand-hierro);
-  font-family:     var(--ks-typography-family-mono);
-  font-size:       var(--ks-typography-size-meta-s);
-  font-weight:     500;
-  letter-spacing:  0.08em;
-  text-transform:  none;
-  color:           var(--ks-surface-elevated);
-  border-radius:   var(--ks-radius-sm);
-  text-decoration: none;
-}
-body.archive .nectar-post-grid-item .date,
-body.archive .nectar-post-grid-item .meta-date,
-body.archive .nectar-post-grid-item time,
-body.archive .nectar-post-grid-item .author,
-body.archive .nectar-post-grid-item .meta-author {
-  font-family:    var(--ks-typography-family-mono);
-  font-size:      var(--ks-typography-size-meta-m);
-  color:          var(--ks-color-text-52);
-  letter-spacing: 0.02em;
-}
-body.archive .nectar-post-grid-item .excerpt,
-body.archive .nectar-post-grid-item p {
-  font-family: var(--ks-typography-family-serif);
-  font-size:   var(--ks-typography-size-body-s);
-  line-height: 1.55;
-  color:       var(--ks-color-text-78);
-}
-
-/* Fallback .post .post-header (si blog_type cambia a layout clásico) */
-.archive .post .post-header h2,
-.archive .post .post-header h2 a {
-  font-family: var(--ks-typography-family-serif);
-  color:       var(--ks-color-ink);
-}
-.archive .post .post-meta .date,
-.archive .post .post-meta .meta-author {
-  font-family: var(--ks-typography-family-mono);
-  font-size:   var(--ks-typography-size-meta-s);
-  color:       var(--ks-color-text-52);
-}
-
-/* 5. Paginación archive */
-body.archive .pagination,
-body.archive .nav-links {
-  margin-top:     var(--ks-space-xl);
-  padding-top:    var(--ks-space-md);
-  border-top:     1px solid var(--ks-color-text-28);
-  font-family:    var(--ks-typography-family-condensed);
-  font-size:      var(--ks-typography-size-body-s);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-body.archive .pagination a,
-body.archive .nav-links a {
-  color: var(--ks-color-brand-turquesa);
-}
-
-
-/* ╔══════════════════════════════════════════════════════════════╗
-   ║ BLOQUE 6 · HOTFIXES SALIENT/WPBakery · post 1806              ║
-   ║ Migra los parches v4.1.x / v5.1.x sueltos a tokens v7.1.      ║
-   ║                                                                ║
-   ║ Regla doctrinal sobre !important (CdC v4.3):                   ║
-   ║ · Permitido SOLO si el selector pelea contra un style="..."   ║
-   ║   inline que Salient inyecta directamente en el HTML.          ║
-   ║ · Si el conflicto es contra otra regla CSS, se resuelve por   ║
-   ║   especificidad o por orden de cascada, NO con !important.    ║
-   ║ · Cada !important superviviente lleva comentario inline       ║
-   ║   con su justificación.                                        ║
-   ╚══════════════════════════════════════════════════════════════╝ */
-
-
-/* ══════════════════════════════════════════════════════════════
-   1 · CHASIS WORDPRESS — overrides que sí pelean contra inline
-   ══════════════════════════════════════════════════════════════ */
-
-/* Hamburger sin el texto "Menu"
-   Clases propias del template Salient; no hay inline en juego. */
+/* Hamburger sin el texto "Menu" — clases del template, sin inline. */
 .mobile-menu-toggle span,
 .mobile-menu-toggle .label,
 .mobile-menu-toggle .menu-text {
   display: none;
 }
 
-/* Fondo global · cobertura extendida Salient/Material
-   Salient inyecta `style="background-color: ..."` inline en algunos
-   wrappers según el page-template activo. !important obligatorio. */
+/* ── 8.2 · Clase A — style attribute real o JS runtime ───────── */
+
+/* Fondo global · cobertura extendida Salient/Material.
+   Salient inyecta style="background-color: …" en estos wrappers
+   según el page-template activo. */
 body.material,
 #ajax-content-wrap,
 .page-header-no-bg {
-  background-color: var(--ks-surface-bg) !important;  /* !i contra inline Salient */
+  background-color: var(--ks-surface-bg) !important;  /* A · vs style attr de Salient */
 }
 
-/* Footer · #ks-footer adicional al #footer-outer
-   Salient inyecta display:block inline en footer si no está oculto
-   desde Theme Options. !important obligatorio. */
-#ks-footer {
-  display:    none !important;       /* vs inline display de Salient */
-  height:     0 !important;          /* vs inline height de Salient */
-  overflow:   hidden !important;     /* vs inline overflow de Salient */
-  visibility: hidden !important;     /* vs inline visibility de Salient */
-}
-
-/* Header limpio con hamburger y search en tinta
-   #header-outer recibe background, border-bottom y box-shadow inline
-   de Salient según skin/sticky. Los tres pelean contra inline. */
+/* Header limpio. background/border/shadow los gestiona Salient JS
+   en los estados sticky/transparent (estilos en runtime). */
 #header-outer {
-  background-color: var(--ks-surface-elevated) !important;             /* vs inline Salient skin */
-  border-bottom:    1px solid var(--ks-color-border-default) !important; /* vs inline Salient skin */
-  box-shadow:       none !important;                                   /* vs inline Salient skin */
+  background-color: var(--ks-surface-elevated) !important;               /* A' · vs JS sticky — VERIFICAR */
+  border-bottom:    1px solid var(--ks-color-border-default) !important; /* A' · vs JS sticky — VERIFICAR */
+  box-shadow:       none !important;                                     /* A' · vs JS sticky — VERIFICAR */
 }
-/* Las líneas del hamburger reciben background-color inline desde
-   Salient JS (gestiona estados open/closed). !important obligatorio. */
+
+/* Líneas del hamburger: Salient JS escribe background-color inline
+   al gestionar estados open/closed. */
 #header-outer .slide-out-widget-area-toggle a .lines,
 #header-outer .slide-out-widget-area-toggle a .lines::before,
 #header-outer .slide-out-widget-area-toggle a .lines::after {
-  background-color: var(--ks-color-ink) !important;              /* !i contra inline Salient JS */
+  background-color: var(--ks-color-ink) !important;  /* A · vs style attr de Salient JS */
 }
-/* search-btn recibe color inline desde Theme Options. */
+
+/* search-btn — Clase B: el color viene del CSS de Theme Options.
+   #header-outer #search-btn a (0-2-1-1) supera al theme. El
+   !important del v7.3.0 ELIMINADO. VERIFICAR EN FRONTEND. */
 #header-outer #search-btn a,
 #header-outer #search-btn a .icon-salient-search,
 #header-outer .icon-salient-search {
-  color: var(--ks-color-ink) !important;                         /* !i contra inline Salient */
+  color: var(--ks-color-ink);
 }
 
-/* Folio ancho blog · 92% en posts, tope 1600px en pantallas grandes.
-   Selector limitado al .container hijo directo de .container-wrap
-   para no afectar containers anidados de WPBakery / Salient row /
-   grid embebido. Si en algún momento Salient anidara un segundo
-   .container intermedio, habría que ajustar este selector. */
-.single-post .container-wrap > .container {
-  max-width: var(--ks-size-folio-blog) !important;  /* vs max-width inline calculado por Salient por breakpoint */
-  width:     var(--ks-size-folio-blog) !important;  /* vs width inline calculado por Salient por breakpoint */
+/* Offset superior de posts: Salient calcula el padding-top del
+   container por JS según el alto real del header. */
+.single-post .container-wrap,
+.single-portfolio .container-wrap {
+  padding-top: var(--ks-size-header-offset) !important;  /* A' · vs padding-top JS — VERIFICAR */
+}
+
+/* ── 8.3 · Folio editorial — Clase A' ──────────────────────────
+   Salient calcula max-width/width del .container por breakpoint en
+   runtime. Selector limitado al hijo directo de .container-wrap
+   para no afectar containers anidados de WPBakery. Si Salient
+   anidara un segundo .container intermedio, ajustar el selector. */
+.single-post .container-wrap > .container,
+body.archive .container-wrap > .container {
+  max-width: var(--ks-size-folio-blog) !important;  /* A' · vs cálculo JS por breakpoint — VERIFICAR */
+  width:     var(--ks-size-folio-blog) !important;  /* A' · vs cálculo JS por breakpoint — VERIFICAR */
 }
 @media (min-width: 1400px) {
-  .single-post .container-wrap > .container {
-    max-width: var(--ks-size-folio-blog-max) !important;  /* vs max-width inline de Salient */
+  .single-post .container-wrap > .container,
+  body.archive .container-wrap > .container {
+    max-width: var(--ks-size-folio-blog-max) !important;  /* A' · vs cálculo JS — VERIFICAR */
   }
 }
 
-
-/* ══════════════════════════════════════════════════════════════
-   2 · CONTENIDO EDITORIAL — sin !important, solo cascada y BEM
-   ══════════════════════════════════════════════════════════════ */
-
-/* Single posts · prose sin tope de ancho propio
-   El wrap controla el ancho (92%); el prose se libera del max-width
-   editorial canónico solo en posts del blog. CSS variable scoping:
-   redefiniendo --ks-typography-prose-max dentro del selector, las
-   reglas del Bloque 1 lo resuelven a 'none' automáticamente. */
-.single-post .wpb_text_column,
-.single-post .content-inner {
-  --ks-typography-prose-max: none;
+/* ── 8.4 · Nectar post grid — Clase A' ─────────────────────────
+   Nectar genera <style> en runtime con el ID único de cada grid
+   (especificidad de ID irreproducible desde CSS global). Los
+   !important de este grupo sobreviven por eso — NO por la antigua
+   justificación "inline". Si la inspección demuestra selectores
+   estáticos sin ID, degradar a Clase B y limpiar. */
+.nectar-post-grid .content-meta h2,
+.nectar-post-grid .content-meta h2 a {
+  font-family: var(--ks-typography-family-serif) !important;  /* A' · CSS Nectar con ID — VERIFICAR */
+  color:       var(--ks-color-ink) !important;                /* A' · CSS Nectar con ID — VERIFICAR */
 }
 
-/* Breadcrumbs cuando viven dentro de WPBakery
-   La clase .ks-breadcrumbs del Bloque 2 pone background --ks-surface-bg.
-   Dentro de un wpb_wrapper queremos transparente. Especificidad
-   0-1-1 (selector clase + clase) gana contra 0-1-0 del Bloque 2. */
-.wpb_wrapper .ks-breadcrumbs,
-.single-post .ks-breadcrumbs {
-  background:    transparent;
-  border-bottom: none;
-  padding:       0;
+/* Chip de categoría a.style-button sobre la imagen (overlaid).
+   Nectar lo pinta como botón turquesa grande (9px 18px). Patrón KS
+   único de chip de categoría: HIERRO + mono (coherente con el
+   Bloque 5). La regla turquesa/condensed del v7.3.0 para
+   .meta-category a (layout before-title) ELIMINADA: ningún grid
+   del sitio usa ya ese layout y contradecía la decisión de chip
+   único — era dead code conflictivo. */
+.nectar-post-grid-item .meta-category a.style-button {
+  background-color: var(--ks-color-brand-hierro) !important;      /* A' · CSS Nectar con ID — VERIFICAR */
+  color:            var(--ks-surface-elevated) !important;        /* A' · CSS Nectar con ID — VERIFICAR */
+  font-family:      var(--ks-typography-family-mono) !important;  /* A' · CSS Nectar con ID — VERIFICAR */
+  font-size:        var(--ks-typography-size-meta-s) !important;  /* A' · CSS Nectar con ID — VERIFICAR */
+  font-weight:      500;
+  letter-spacing:   0.08em;
+  text-transform:   none;
+  padding:          3px 8px !important;                           /* A' · CSS Nectar con ID — VERIFICAR */
+  border-radius:    var(--ks-radius-sm) !important;               /* A' · CSS Nectar con ID — VERIFICAR */
+  line-height:      1.4;
 }
 
-/* Caption serif · pie de imagen editorial */
-.ks-caption-serif {
-  font-family: var(--ks-typography-family-serif);
-  font-size:   var(--ks-typography-size-meta-l);
-  font-style:  italic;
-  color:       var(--ks-color-text-52);
-  line-height: 1.5;
-  margin-top:  var(--ks-space-xs);
-  text-align:  left;
+/* Saneamiento SPAN .meta-category (v7.2.5 · 2026-05-27).
+   Home: oculta el SPAN raw sin chips (hermano del que sí los
+   tiene). Archive: quita el bg turquesa del contenedor para que
+   solo los chips a.style-button pinten.
+   :has() requiere Safari 15.4+ / Chrome 105+ / Firefox 121+
+   (~95% global 2026). Sin soporte: comportamiento pre-fix, sin
+   regresión. VERIFICADO en DOM vivo 2026-06-11 (home + archive):
+   100% de los span.meta-category llevan a.style-button en esta
+   config del theme — la regla no oculta categorías legítimas. */
+.nectar-post-grid-item span.meta-category:not(:has(a.style-button)) {
+  display: none;
+}
+.nectar-post-grid-item span.meta-category {
+  background: transparent !important;  /* A' · CSS Nectar con ID — VERIFICAR */
+  padding:    0 !important;            /* A' · CSS Nectar con ID — VERIFICAR */
 }
 
-/* Cuerpo de single posts · 17px / 1.75
-   Tamaño específico del blog (más compacto que el prose canónico).
-   Misma familia de especificidad que la regla base con :is(); esta gana
-   por orden de cascada (este bloque carga después del Bloque 1). Sin !important. */
-.single-post .wpb_text_column p,
-.single-post .wpb_text_column li {
-  font-size:   var(--ks-typography-size-body-m);   /* 17px */
-  line-height: 1.75;
-}
-
-/* h6 en single posts · patrón overline mono
-   Mismo color que el h6 base (--ks-color-text-45), unificado tras
-   detectar inconsistencia con --ks-color-text-52 en versión previa.
-   Gana por orden de cascada sobre el :is() del Bloque 1 (carga después). Sin !important. */
-.single-post .wpb_text_column h6 {
-  font-family:    var(--ks-typography-family-mono);
-  font-size:      var(--ks-typography-size-meta-s);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color:          var(--ks-color-text-45);
-  margin-bottom:  var(--ks-space-sm);
-}
-
-/* Overline · clase legacy para piezas pre-refundación
-   Para piezas nuevas, usar h6 dentro de prose (Bloque 1) o
-   .ks-card-overline (Bloque 2). Mantengo letter-spacing 0.14em
-   por convención visual de los posts antiguos del blog —
-   distinta del h6 (0.06em) y del card-overline (0.08em). */
-.ks-overline {
-  font-family:    var(--ks-typography-family-mono);
-  font-size:      var(--ks-typography-size-meta-s);
-  letter-spacing: 0.14em;
-  color:          var(--ks-color-text-45);
-  text-transform: uppercase;
-}
-
-/* Sources · lista de referencias al pie del artículo
-   Selector ol.ks-sources tiene especificidad 0-1-1, suficiente para
-   no necesitar !important salvo que el blog renderice <ol> con
-   estilos por defecto del navegador. font-family: inherit hereda
-   del prose (serif). */
-ol.ks-sources,
-ol.ks-sources li {
-  font-family: inherit;
-  font-size:   var(--ks-typography-size-meta-l);   /* 13px */
-  line-height: 1.7;
-  color:       var(--ks-color-text-55);
-  font-weight: 400;
-}
-ol.ks-sources li em { font-style: italic; }
-ol.ks-sources li a {
-  color:           var(--ks-color-brand-teal);
-  text-decoration: underline;
-  font-weight:     400;
-}
-ol.ks-sources li a:hover { color: var(--ks-color-scale-turquesa-som-1); }
-
-/* Aside · variantes "label" y "link" para asides simples legacy
-   Coexisten con BEM completo (.ks-aside-concept__label) del Bloque 3.
-   Estas son atajos para asides ligeros en posts del blog. */
-.ks-aside-label {
-  display:        block;
-  font-family:    var(--ks-typography-family-mono);
-  font-size:      var(--ks-typography-size-meta-xs);   /* 10px */
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color:          var(--ks-color-text-45);
-  margin-bottom:  var(--ks-space-xs);
-}
-.ks-aside-link {
-  display:         block;
-  font-family:     var(--ks-typography-family-mono);
-  font-size:       var(--ks-typography-size-meta-m);   /* 12px */
-  color:           var(--ks-color-brand-teal);
-  text-decoration: none;
-  margin-bottom:   var(--ks-space-xs);
-  padding:         0 var(--ks-space-xs);
-}
-.ks-aside-link:hover { text-decoration: underline; }
-
-/* Cuerpo de los asides legacy (sintaxis no-BEM con .ks-aside-label).
-   El cuerpo se envuelve en <p class="ks-aside-text"> para leerse como
-   párrafo serif de marginalia, no como nota corta. */
-.ks-aside-card .ks-aside-text,
-.ks-aside-concept .ks-aside-text,
-.ks-aside-derivada .ks-aside-text,
-.ks-aside-text {
-  font-family: var(--ks-typography-family-serif);
-  font-size:   var(--ks-typography-size-aside);
-  line-height: var(--ks-typography-aside-line);
-  margin:      0 0 var(--ks-space-sm);
-}
-.ks-aside-text:last-child { margin-bottom: 0; }
-.ks-aside-text strong { color: var(--ks-color-ink); }
-
-
-/* ══════════════════════════════════════════════════════════════
-   3 · ASIDE-CONCEPT — modifier BEM correcto, no override por contexto
-   ══════════════════════════════════════════════════════════════
-   Antes: .single-post .ks-aside-concept fragmentaba el componente
-   según contexto (gris discreto en posts, teal en editorial).
-   Ahora: BEM canónico — `.ks-aside-concept` es el componente base
-   (teal del Bloque 3), `.ks-aside-concept--quiet` es la variante
-   gris para asides discretos. Se aplica como clase, no por contexto. */
-
-.ks-aside-concept--quiet {
-  background:    var(--ks-color-text-04);
-  padding:       var(--ks-space-md) var(--ks-space-lg);
-  margin-bottom: var(--ks-space-lg);
-  border-radius: var(--ks-radius-sm);
-  font-size:     var(--ks-typography-size-meta-l);   /* 13px */
-  line-height:   1.55;
-  color:         var(--ks-color-text-62);
-}
-.ks-aside-concept--quiet p {
-  font-size:     var(--ks-typography-size-meta-l);
-  line-height:   1.55;
-  color:         var(--ks-color-text-62);
-  margin:        0 0 var(--ks-space-xs) 0;
-}
-.ks-aside-concept--quiet p:last-child { margin-bottom: 0; }
-.ks-aside-concept--quiet strong { color: var(--ks-color-text-78); }
-.ks-aside-concept--quiet em {
-  font-size:  var(--ks-typography-size-meta-l);
-  font-style: italic;
-}
-
-/* Soft shadow for WPBakery columns with inline background color */
-.single-post .vc_row[data-vc-full-width] .vc_column_container[style*="background-color"] {
-  box-shadow: var(--ks-shadow-column-elevated);
+.nectar-post-grid .content-meta .date,
+.nectar-post-grid .content-meta .nectar-love {
+  font-family: var(--ks-typography-family-mono) !important;      /* A' · CSS Nectar con ID — VERIFICAR */
+  font-size:   var(--ks-typography-size-meta-s) !important;      /* A' · CSS Nectar con ID — VERIFICAR */
+  color:       var(--ks-color-text-52) !important;               /* A' · CSS Nectar con ID — VERIFICAR */
 }
 
 
 /* ═══════════════════════════════════════════════════════════════
-   FIN paquete v7.3.0 · 2026-06-03
+   FIN paquete v7.4.3 · koisamsa.com · 2026-06-11
 
-   DELTA v7.2.1 → v7.2.2:
-   · Añadido un único bloque CSS en Bloque 6 (líneas ~1114-1124):
-     saneamiento del overlay raw de categorías que Salient inyecta
-     con category-position-overlaid. Oculta solo el SPAN sin chips,
-     deja vivos los a.style-button del v7.2.1.
-   · Cero !important nuevos — gana por especificidad sobre el theme.
-   · Cero cambios en tokens, base, componentes, scopes editorial
-     ni artefacto. Cero cambios en chip negro v7.2.1.
-
-   MÉTRICAS (verificadas tras delta v7.2.2):
-   · Líneas:                  ~1.553
-   · Tokens declarados:       138 (CSS custom properties, nomenclatura DTCG)
-   · Hardcoded fuera de :root: presentes solo en ajustes locales menores
-   · @import:                 0 (fuentes vía WPCode)
-   · Llaves balanceadas:      ✅ (verificado)
-   · !important totales:      52 (sin cambios respecto a v7.2.1)
-                              cada uno con comentario inline indicando
-                              contra qué inline-style de Salient pelea.
-
-   CRITERIO !important:
-   · Permitido en Bloques 5 y 6 solo cuando el selector pelea contra
-     un style="..." inline que Salient/WPBakery inyecta en el HTML.
-   · No permitido contra otras reglas CSS: eso se resuelve por
-     especificidad o por orden de cascada (paquete carga después
-     de Salient).
-
-   COMPATIBILIDAD DEL FIX v7.2.2:
-   · Selector :has() requiere navegador moderno (Safari 15.4+,
-     Chrome 105+, Firefox 121+). Cobertura global ~95% en 2026.
-     Si el navegador no soporta :has(), el selector entero se ignora
-     y se ve el comportamiento pre-fix (overlay raw visible).
-     Sin regresión, solo sin mejora.
-
-   MIGRACIÓN PENDIENTE (deuda nombrada · sesión futura):
-   · Alias retrocompatibles --ks-color-brand-teal y --ks-color-brand-blue
-     → migrar a nombres químicos canónicos (turquesa, cobalto).
-     ~20 refs en el paquete. Find-replace global.
-   · Sincronización modular vault: bloque chip + bloque saneamiento
-     overlay raw aplicados también a ks-scope-wp.css.
+   VOLCADO: pegar íntegro en Apariencia → Personalizar → CSS adicional
+   (Salient Customizer). Verificar que el post 1806 sigue vacío.
+   Revisión tras volcado: home → /notes/ → single-post → archive → portfolio.
+   Flags VERIFICAR en Bloque 8: si una regla A' pelea contra CSS
+   estático (no ID dinámico de Nectar), degradar a Clase B y quitar !important.
 
    ROLLBACK:
-   · Inmediato: pegar ks-css-snapshot-PRE-chip-cleanup-2026-05-27.css
-     (snapshot v7.2.1 íntegro).
-   · Profundo: Vault99-Wiki/08_OUTPUTS/ks-css-v5.0.css + adiciones
-     v5.1.x del _ARCHIVO.
+   · Inmediato: snapshot v7.3.0 en Vault99-Wiki/08_OUTPUTS/
+   · Profundo:  Vault99-Wiki/08_OUTPUTS/ks-css-v5.0.css
    ═══════════════════════════════════════════════════════════════ */
+
 /* ═══════════════════════════════════════════════════════════════
    GLOSARIO · layout del artefacto (namespace .glo-*)
    Solo estructura no cubierta por el sistema KS. Usa tokens --ks-*.

@@ -39,8 +39,8 @@ Si te manejas con git:
    }
    ```
 
-3. Mantén el tono: **definición → cómo → ejemplo → matices**. Concreto, con criterio, sin relleno.
-4. Las categorías válidas son: `UX Research`, `UI & Visual`, `Design Systems`, `Accesibilidad`, `Métricas`, `Product & Delivery`, `Métodos & Procesos`, `Técnico & IA`.
+3. Mantén la anatomía de la ficha: **etimología → definición → cómo se hace / de qué se compone → ejemplo → matices → referencias → relacionados**. Concreto, con criterio, sin relleno. La frase-síntesis que merezca foco va marcada con `__rotulador__`.
+4. Las categorías válidas (campo `cat`) son: `Proceso`, `Investigación`, `Interfaz`, `Producto`, `Crecimiento`, `Métricas`, `Sistemas de diseño`, `Tecnología`, `Accesibilidad`.
 5. Abre un *pull request* describiendo el cambio.
 
 ## Estilo de las definiciones

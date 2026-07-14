@@ -820,6 +820,16 @@ button.glo-alpha-b:hover{ background:var(--ks-surface-muted); color:var(--ks-col
   font-family:var(--ks-typography-family-condensed); font-size:var(--ks-typography-size-meta-m);
   color:var(--ks-color-text-52); white-space:nowrap; }
 .glo-estado .material-symbols-outlined{ font-size:18px; line-height:1; }
+/* El sello declara `display`, así que necesita su regla [hidden] explícita:
+   el atributo `hidden` (origen user-agent) pierde ante una clase de autor.
+   Igual que .glo-say y .glo-top. Sin esto, un sello 'verificada' se queda
+   pegado sobre fichas base y afirma en falso que están auditadas. */
+.glo-estado[hidden]{ display:none; }
+/* Modificador de estado. OJO: el JS construye esta clase al vuelo
+   (`'glo-estado--' + t.estado`), así que un detector de código muerto que
+   busque clases literales NO la ve. No es dead code. (Podada por error en
+   la limpieza del 14-jul y restituida el mismo día.) */
+.glo-estado--verificada{ color:var(--ks-color-text-72); }
 </style>
 </head>
 <body>
@@ -13110,6 +13120,9 @@ function openTerm(id){
     est.title = t.verificada ? `Fuentes auditadas el ${t.verificada}` : '';
   } else {
     est.hidden = true;
+    est.className = 'glo-estado';
+    est.innerHTML = '';
+    est.title = '';
   }
   $('#glo-modal-term').textContent = t.t;
   /* Etimología (opcional, estilo RAE): origen del término, antes de la definición.

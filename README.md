@@ -1,6 +1,6 @@
 # Glosario de Producto, UX/UI e IA
 
-Un glosario práctico de diseño de producto: **180 términos** con definición, cómo se hace o se calcula, un ejemplo y las trampas que nadie te cuenta. Pensado para que diseño, desarrollo, negocio y cualquier curiosa hablen el mismo idioma.
+Un glosario práctico de diseño de producto: **254 términos** con definición, cómo se hace o se calcula, un ejemplo y las trampas que nadie te cuenta. Pensado para que diseño, desarrollo, negocio y cualquier curiosa hablen el mismo idioma.
 
 🔗 **[Abrir el glosario](https://koisamsa.github.io/glosario-producto-digital/)**
 _(disponible una vez activado GitHub Pages en Settings → Pages)_
@@ -21,15 +21,15 @@ Una única página web, sin instalación ni servidor. Se abre en cualquier naveg
 
 | Área | Nº | Ejemplos |
 |---|---|---|
-| Proceso | 31 | Sprint, Design Thinking, Kanban, Backlog… |
-| Investigación | 29 | Personas, Journey map, Card Sorting, Insight… |
-| Interfaz | 27 | Jerarquía visual, Grid, Tipografía, leyes de UX… |
-| Producto | 24 | MVP, Roadmap, OKR, RICE, Trade-off… |
-| Crecimiento | 23 | PMF, Funnel, Freemium, Unit economics… |
-| Métricas | 22 | KPI, North Star, Retención, Conversión, A/B… |
-| Sistemas de diseño | 13 | Tokens, Componentes, Handoff, Variantes… |
-| Tecnología | 6 | API, Agente (IA), Token, Vibe coding, Plugin… |
-| Accesibilidad | 5 | WCAG, ARIA, Contraste, Diseño inclusivo… |
+| Investigación | 43 | Personas, Journey map, Card Sorting, Diagrama de afinidad, Benchmarking… |
+| Métricas | 37 | KPI, North Star, Retención, A/B Testing, CAC, Métricas Pirata… |
+| Producto | 37 | MVP, Roadmap, OKR, Caso límite, Coste hundido, Métrica guardarraíl… |
+| Proceso | 35 | Sprint, Kanban, Backlog, Burndown, Criterios de aceptación, Daily… |
+| Crecimiento | 34 | PMF, Funnel, Aha moment, Burn rate, ARPU, AOV… |
+| Interfaz | 28 | Jerarquía visual, Affordance, Carga cognitiva, Estado vacío, Above the fold… |
+| Sistemas de diseño | 14 | Tokens, Componentes, Atomic Design, Code Connect, Librería de componentes… |
+| Accesibilidad | 13 | WCAG, ARIA, Contraste, Diseño universal, Control por voz… |
+| Tecnología | 13 | API, Agente (IA), Headless, MCP, HITL, DPA, Vibe coding… |
 
 ## Cómo usarlo
 

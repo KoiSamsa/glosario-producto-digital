@@ -29,7 +29,7 @@ Una única página web, sin instalación ni servidor. Se abre en cualquier naveg
 | Interfaz | 28 | Jerarquía visual, Affordance, Carga cognitiva, Estado vacío, Above the fold… |
 | Sistemas de diseño | 14 | Tokens, Componentes, Atomic Design, Code Connect, Librería de componentes… |
 | Accesibilidad | 13 | WCAG, ARIA, Contraste, Diseño universal, Control por voz… |
-| Tecnología | 13 | API, Agente (IA), Headless, MCP, HITL, DPA, Vibe coding… |
+| Tecnología | 13 | API, Headless, MCP, HITL, DPA, Vibe coding… |
 
 ## Cómo usarlo
 
